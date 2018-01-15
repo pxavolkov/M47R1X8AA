@@ -1,0 +1,15 @@
+bin
+obj
+TestResults
+*.suo
+*.DotSettings.user
+*.log
+*.user
+*.cache
+*.dll
+*.tmp
+
+packages
+!packages/repositories.config
+App_Data
+*.editorconfig
