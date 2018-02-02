@@ -1,0 +1,262 @@
+﻿@font-face{
+    font-family:RussoOne;
+    src:url(fonts/russo_one_regular.eot?#iefix) format('embedded-opentype'),url(fonts/russo_one_regular.ttf) format('truetype');
+    font-weight:400;
+    font-style:normal
+}
+@font-face{
+    font-family:Sanasoft;
+    src:url(fonts/Sanasoft_Inset_B.kz.eot?#iefix) format('embedded-opentype'),url(fonts/Sanasoft_Inset_B.kz.ttf) format('truetype');
+    font-weight:400;
+    font-style:normal
+}
+@font-face{
+    font-family:Hooge;
+    src:url(fonts/hooge_05_55_cyr.eot?#iefix) format('embedded-opentype'),url(fonts/hooge_05_55_cyr.ttf) format('truetype');
+    font-weight:400;
+    font-style:normal
+}
+body{
+    background:url(img/BACK11.jpg) center center no-repeat fixed;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover
+}
+.bkgrnd{
+    background-color:#1A5784!important
+}
+
+/*#loader{
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url(../img/loader.gif) center center no-repeat fixed #0E2225;
+    -webkit-background-size:center;
+    -moz-background-size:center;
+    -o-background-size:center;
+    background-size:center;
+    z-index:1000
+}
+.buttonvk,.buttonweb,.buttonweb_xs,.buttonwiki,.buttonwiki_xs,.imgcircle{
+    position:absolute
+}
+#loaderMessage{
+    text-align:center;
+    margin-top:50px
+}
+#logo{
+    margin-top:30px;
+    margin-bottom:10px
+}
+#logo img{
+    height:auto;
+    margin:auto;
+    display:block
+}
+.eqelem{
+    display:inline-block;
+    border:none;
+    color:#5591B3;
+    background-color:#5591B3
+}
+.equalizer{
+    overflow-x:hidden;
+    white-space:nowrap;
+    margin:0 auto;
+    height:80px
+}
+.heightButtons{
+    height:130px
+}
+.heightButtons_xs{
+    height:75px
+}
+.buttonvk{
+    left:0;
+    top:0;
+    opacity:.7
+}
+.buttonvk:hover{
+    opacity:1
+}
+.buttonweb{
+    left:185px;
+    top:0;
+    opacity:.7
+}
+.buttonweb:hover{
+    opacity:1
+}
+.buttonwiki{
+    left:370px;
+    top:0;
+    opacity:.7
+}
+.buttonwiki:hover{
+    opacity:1
+}
+.buttonweb_xs{
+    left:100px;
+    top:0;
+    opacity:.7
+}
+.buttonweb_xs:hover{
+    opacity:1
+}
+.buttonwiki_xs{
+    left:200px;
+    top:0;
+    opacity:.7
+}
+.buttonwiki_xs:hover{
+    opacity:1
+}
+.video{
+    padding-bottom:20px
+}
+.video iframe{
+    display:block;
+    margin:0 auto;
+    padding:3px
+}
+.rightprogress{
+    display:block;
+    height:1px;
+    border:0;
+    border-top:3px solid #5591B3;
+    margin-top:3px;
+    margin-bottom:0;
+    margin-right:5px;
+    float:right;
+    clear:right
+}
+.imgcircle{
+    bottom:0;
+    right:10px
+}
+#containercircle,.relative{
+    position:relative
+}
+#containercircle{
+    float:right;
+    margin-top:120px
+}
+.mainFont{
+    font-family:RussoOne
+}*/
+.blue{
+    color:#0098DA
+}
+.green{
+    color:#9DD3AF
+}
+.orange{
+    color:#FE6F01
+}
+.yellow {
+    color: #FFF7B2;
+}
+.lightGreen {
+    color: #D6E9D8;
+}
+.almostWhite {
+    color: #FFF7B2;
+}
+/*
+.width560{
+    width:560px
+}
+.width300{
+    width:300px
+}
+.rightborder{
+    margin-top:20px;
+    border:1px solid #9DD3AF;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px
+}
+.clearRight{
+    clear:right
+}
+.marginCenter{
+    margin:0 auto
+}
+    */
+.fontsize150{
+    font-size:150%
+}
+.fontsize200{
+    font-size:200%
+}
+/*
+.padding5{
+    padding:5px
+}
+.padding10{
+    padding:10px
+}
+.marginBottom15{
+    margin-bottom:15px
+}
+.modal a,.modal a:active,.modal a:hover,.modal a:visited{
+    text-decoration:none;
+    outline:0;
+    color:#0895D0
+}
+.leftprogress{
+    display:block;
+    height:1px;
+    border:0;
+    border-top:2px solid #5591B3;
+    margin-top:2px;
+    margin-bottom:0;
+    float:left;
+    clear:left
+}
+.imgcircle2{
+    position:absolute;
+    bottom:0;
+    right:20px
+}
+.modalMain{
+    font-family:Hooge;
+    text-transform:uppercase;
+    text-align:center;
+    border:1px solid #107FA9;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    color:#CDE7CF
+}
+    */
+.topProgressBar{
+    height:5px;
+    border:1px solid #107FA9
+}
+.topProgressBar div{
+    border:2px solid #107FA9;
+    width:40%;
+    float:right
+}
+/*
+.modalMainText{
+    padding:10px 0;
+    width:300px
+}
+.modalProgress{
+    position:absolute;
+    bottom:25px;
+    width:30%
+}
+.modalCirclesContainer{
+    position:absolute;
+    right:0;
+    width:30%
+}
+*/
