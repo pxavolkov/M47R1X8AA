@@ -15,7 +15,7 @@
 
 </head>
 <body class="bkgrnd" style="font-family: Hooge; text-transform: uppercase;">
-@*<div class="navbar navbar-inverse navbar-fixed-top">
+@*<div class="navbar navbar-toggleable-md">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -23,25 +23,33 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Virtech inner web", "Index", "Home", new { area = "" }, new { @class = "navbar-brand yellow fontsize150" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                @*<ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Edit", "Index", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>*@
+    <nav class="navbar navbar-toggleable-md">
+        <button class="navbar-toggler navbar-toggler-right blue" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        @Html.ActionLink("Virtech inner web", "Index", "Home", new { area = "" }, new { @class = "navbar-brand yellow fontsize150" })
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
 
     <div class="container">
-        <div class="row">
+        @*<div class="row">
             <div class="col-4"></div>
             <div class="col-4 col-xs-12 yellow fontsize150">Virtech inner web</div>
             <div class="col-4"></div>
-        </div>
+        </div>*@
         <div class="row">
             <div class="col-4"></div>
             <div class="yellow col-4 col-xs-12 topProgressBar"><div></div></div>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -39,6 +40,7 @@ namespace WebApp.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    SaveUsernameToSession();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -48,6 +50,16 @@ namespace WebApp.Controllers
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
+            }
+        }
+
+        private void SaveUsernameToSession()
+        {
+            if (Request.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var account = MainContext.Users.Include(u => u.Profile).SingleOrDefault(a => a.Id == userId);
+                Session["Username"] = account?.Profile == null ? string.Empty : $"{account.Profile.FirstName} {account.Profile.LastName}";
             }
         }
 

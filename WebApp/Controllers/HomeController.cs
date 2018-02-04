@@ -14,15 +14,6 @@ namespace WebApp.Controllers
     public class HomeController : BaseController
     {
 
-        public ActionResult Index()
-        {
-            var userId = User.Identity.GetUserId();
-            var account = MainContext.Users.Include(u => u.Profile).SingleOrDefault(a => a.Id == userId);
-            if (account == null)
-            {
-                return RedirectToAction("LogOff", "Account");
-            }
-            return View(account.Profile);
-        }
+        
     }
 }

@@ -33,7 +33,8 @@ namespace WebApp
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
-
+            // Configure validation logic for passwords
+            manager.PasswordValidator = new PasswordValidator();
 
             // Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;
