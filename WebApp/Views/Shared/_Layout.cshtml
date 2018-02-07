@@ -2,54 +2,28 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewBag.Title - Matrix 2218</title>
     <meta name="title" content="РИ Киберпанк 2218" />
     <meta name="description" content="ПРИ Киберпанк 2218" />
 
-    <link rel="icon" href="Content/img/favicon.png">
-    <link rel="stylesheet" type="text/css" href="Content/Site.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link rel="icon" href="/Content/img/faviconb.png">
+    <link rel="stylesheet" type="text/css" href="/Content/Site.css"/>
+    <link rel="stylesheet" type="text/css" href="/Content/bootstrap.min.css" />
 
 </head>
 <body class="bkgrnd" style="font-family: Hooge; text-transform: uppercase;">
-@*<div class="navbar navbar-toggleable-md">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Virtech inner web", "Index", "Home", new { area = "" }, new { @class = "navbar-brand yellow fontsize150" })
-            </div>
-            <div class="navbar-collapse collapse">
-                @*<ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Edit", "Index", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>*@
     <nav class="navbar navbar-toggleable-md">
-        <button class="navbar-toggler navbar-toggler-right blue" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         @Html.ActionLink("Virtech inner web", "Index", "Home", new { area = "" }, new { @class = "navbar-brand yellow fontsize150" })
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarsMain">
             @Html.Partial("_LoginPartial")
         </div>
     </nav>
-
     <div class="container">
-        @*<div class="row">
-            <div class="col-4"></div>
-            <div class="col-4 col-xs-12 yellow fontsize150">Virtech inner web</div>
-            <div class="col-4"></div>
-        </div>*@
         <div class="row">
             <div class="col-4"></div>
             <div class="yellow col-4 col-xs-12 topProgressBar"><div></div></div>
@@ -59,18 +33,9 @@
     </div>
 
 
-    
 
-        @*<div class="container body-content">
-    @RenderBody()
-    <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-        </div>*@
-
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
 </html>

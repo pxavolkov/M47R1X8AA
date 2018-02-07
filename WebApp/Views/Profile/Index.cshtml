@@ -6,8 +6,27 @@
 
 <div class="row blue" style="padding-top: 10px;">
     <div class="col-4"></div>
-    <div class="col-2 col-xs-6" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; text-align: center;">
-        <div class="fontsize200">^</div><div class="fontsize200">^</div><div>upload<br />profile<br />photo</div>
+    <div class="col-2 col-xs-6">
+        <div style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; text-align: center; width: 174px; height: 174px;">
+            @if (false)
+            {
+                <a href="#">
+                    <img src="/Content/Avatars/test.png" style="border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;" />
+                </a>
+            }
+            else
+            {
+                <a href="#">
+                    <div class="fontsize200">^</div>
+                    <div class="fontsize200">^</div>
+                    <div>
+                        upload<br/>profile<br/>photo
+                    </div>
+                </a>
+             }
+
+
+</div>
     </div>
     <div class="col-2 col-xs-6">
         <div class="fontsize200">Age...@Model.Age</div>
