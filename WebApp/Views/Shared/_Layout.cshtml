@@ -17,7 +17,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        @Html.ActionLink("Virtech inner web", "Index", "Home", new { area = "" }, new { @class = "navbar-brand yellow fontsize150" })
+        @Html.ActionLink("Virtech inner web", "Index", "Profile", new { area = "" }, new { @class = "navbar-brand yellow fontsize150" })
 
         <div class="collapse navbar-collapse" id="navbarsMain">
             @Html.Partial("_LoginPartial")
@@ -25,9 +25,9 @@
     </nav>
     <div class="container">
         <div class="row">
-            <div class="col-4"></div>
-            <div class="yellow col-4 col-xs-12 topProgressBar"><div></div></div>
-            <div class="col-4"></div>
+            <div class="col-lg-3 hidden-md-down"></div>
+            <div class="yellow col-lg-6 col-md-12 topProgressBar"><div></div></div>
+            <div class="col-lg-3 hidden-md-down"></div>
         </div>
         @RenderBody()
     </div>
@@ -37,5 +37,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>

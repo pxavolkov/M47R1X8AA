@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Model;
+using WebApp.Models;
 
 namespace WebApp.Controllers
 {
@@ -20,7 +21,9 @@ namespace WebApp.Controllers
             {
                 return RedirectToAction("LogOff", "Account");
             }
-            return View(account.Profile);
+
+            var model = new ProfileViewModel(account.Profile);
+            return View(model);
         }
 
         [AllowAnonymous]
