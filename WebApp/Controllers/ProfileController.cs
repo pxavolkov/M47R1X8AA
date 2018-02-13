@@ -19,8 +19,7 @@ namespace WebApp.Controllers
     {
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId();
-            var account = MainContext.Users.Include(u => u.Profile).SingleOrDefault(a => a.Id == userId);
+            var account = GetCurrentUserAccount();
             if (account == null)
             {
                 return RedirectToAction("LogOff", "Account");
@@ -38,7 +37,14 @@ namespace WebApp.Controllers
 
         public ActionResult Edit()
         {
-            return View();
+            var account = GetCurrentUserAccount();
+            if (account == null)
+            {
+                return RedirectToAction("LogOff", "Account");
+            }
+
+            var model = new ProfileViewModel(account.Profile);
+            return View(model);
         }
 
         public ActionResult UploadPhoto()
@@ -59,17 +65,22 @@ namespace WebApp.Controllers
 
                 System.Drawing.Image image = System.Drawing.Image.FromStream(file.InputStream);
 
-                int height = image.Height;
-                int width = image.Width;
-
-                file.SaveAs(path);
-
-                Session["UploadedFile"] = new AvatarViewModel
+                var viewModel = new AvatarViewModel
                 {
                     Path = Path.Combine("/Content/Avatars/temp", Path.GetFileName(path)),
-                    Width = width,
-                    Height = height
+                    Width = image.Width,
+                    Height = image.Height
                 };
+
+                var r = new ResizeSettings();
+                r.Width = viewModel.DisplayWidth;
+                r.Height = viewModel.DisplayHeight;
+                ImageResizer.ImageBuilder.Current.Build(image, path, r);
+
+                //file.SaveAs(path);
+
+                
+                Session["UploadedFile"] = viewModel;
             }
             
             // after successfully uploading redirect the user
@@ -94,8 +105,7 @@ namespace WebApp.Controllers
             //r.Height = 170;
             ImageResizer.ImageBuilder.Current.Build(inputPath, outputPath, r);
 
-            var userId = User.Identity.GetUserId();
-            var account = MainContext.Users.Include(u => u.Profile).SingleOrDefault(a => a.Id == userId);
+            var account = GetCurrentUserAccount();
             if (account == null)
             {
                 return RedirectToAction("LogOff", "Account");
@@ -107,22 +117,35 @@ namespace WebApp.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
-        private void Resize(string imageFile, string outputFile, double scaleFactor, Rectangle cropRectangle)
+        public ActionResult Update(string firstName, string lastName, string sex, string age)
         {
-            using (var srcImage = Image.FromFile(imageFile))
+            int ageToSave;
+            int.TryParse(age, out ageToSave);
+
+            var account = GetCurrentUserAccount();
+            if (account == null)
             {
-                var newWidth = (int)(srcImage.Width * scaleFactor);
-                var newHeight = (int)(srcImage.Height * scaleFactor);
-                using (var newImage = new Bitmap(newWidth, newHeight))
-                using (var graphics = Graphics.FromImage(newImage))
-                {
-                    graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    graphics.DrawImage(srcImage, cropRectangle, new Rectangle(0, 0, 170, 170), GraphicsUnit.Pixel);
-                    newImage.Save(outputFile);
-                }
+                return RedirectToAction("LogOff", "Account");
             }
+
+            account.Profile.Age = ageToSave;
+            account.Profile.FirstName = firstName;
+            account.Profile.LastName = lastName;
+            account.Profile.IsMale = sex == "1";
+            MainContext.SaveChanges();
+
+            return RedirectToAction("Index", "Profile");
+        }
+
+        private Account GetCurrentUserAccount()
+        {
+            var userId = User.Identity.GetUserId();
+            var account = MainContext.Users.Include(u => u.Profile).SingleOrDefault(a => a.Id == userId);
+            if (account != null)
+            {
+                account.Profile = MainContext.Profiles.Include(p => p.Balance).SingleOrDefault(r => r.ID == account.Profile.ID);
+            }
+            return account;
         }
     }
 }

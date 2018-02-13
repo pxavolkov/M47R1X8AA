@@ -1,57 +1,87 @@
-﻿@model Model.ProfileInfo
+﻿@model WebApp.Models.ProfileViewModel
 @{
-    ViewBag.Title = "Профиль";
+    ViewBag.Title = "Изменить профиль";
 }
 
-
-<div class="row blue" style="padding-top: 10px;">
-    <div class="col-4"></div>
-    <div class="col-2 col-xs-6" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; text-align: center;">
-        <div class="fontsize200">^</div><div class="fontsize200">^</div><div>upload<br />profile<br />photo</div>
+@using (Html.BeginForm("Update", "Profile", FormMethod.Post,
+    new {enctype = "multipart/form-data", id = "updateForm"}))
+{
+    <div class="row blue" style="padding-top: 10px;">
+        <div class="col-4"></div>
+        <div class="col-2 col-xs-6">
+            <div style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; text-align: center; width: 174px; height: 174px;">
+                <a href="@Url.Action("UploadPhoto", "Profile")">
+                    @if (!string.IsNullOrEmpty(Model.AvatarPath))
+                    {
+                        <img src="@Model.AvatarPath" style="border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;"/>
+                    }
+                    else
+                    {
+                        <div class="fontsize200">^</div>
+                        <div class="fontsize200">^</div>
+                        <div>
+                            upload<br/>profile<br/>photo
+                        </div>
+                    }
+                </a>
+            </div>
+        </div>
+        <div class="col-2 col-xs-6">
+            <div class="fontsize200">Age...<input type="text" id="age" name="age" value="@Model.Profile.Age" style="background-color: transparent; border: 0px solid; height: 25px; width: 40px; color: #fff;">
+            </div>
+            <div class="fontsize200">Sex...
+                <select id="sex" name="sex" style="background-color: transparent; border: 0px solid; height: 30px; width: 50px; color: #fff;">
+                    <option style="color: #000;" value="1" @(Model.Profile.IsMale ? "selected='selected'" : "")>M</option>    
+                    <option style="color: #000;" value="0" @(Model.Profile.IsMale ? "" : "selected='selected'")>F</option>    
+                </select>
+            </div>
+            <div><br/><br/><br/>
+            </div>
+            @*<div class="@(Model.Profile.IsCitizen ? "green" : "orange")">Registration: @(Model.Profile.IsCitizen ? "YES" : "!NO!")</div>*@
+        </div>
+        <div class="col-4"></div>
     </div>
-    <div class="col-2 col-xs-6">
-        <div class="fontsize200">Age...@Model.Age</div>
-        <div class="fontsize200">Sex...@(Model.IsMale ? "M" : "F")</div>
-        <div><br /><br /><br /></div>
-        <div class="@(Model.IsCitizen ? "green" : "orange")">Registration: @(Model.IsCitizen ? "YES" : "!NO!")</div>
+    <div class="row lightGreen fontsize200" style="text-decoration: underline">
+        <div class="col-4"></div>
+        <div class="col-4 col-xs-12">
+            <div><input type="text" id="firstName" name="firstName" value="@Model.FirstName" style="background-color: transparent; border: 0px solid; height: 35px; width: 200px; color: #fff;" maxlength="20">
+            </div>
+            <div><input type="text" id="lastName" name="lastName" value="@Model.LastName" style="background-color: transparent; border: 0px solid; height: 35px; width: 200px; color: #fff;" maxlength="20">
+            </div>
+        </div>
+        <div class="col-4"></div>
     </div>
-    <div class="col-4"></div>
-</div>
-<div class="row lightGreen fontsize200" style="text-decoration: underline">
-    <div class="col-4"></div>
-    <div class="col-4 col-xs-12">
-        <div>@Model.FirstName</div>
-        <div>@Model.LastName</div>
-    </div>
-    <div class="col-4"></div>
-</div>
-<div class="row fontsize200">
+@*<div class="row fontsize200">
     <div class="col-4"></div>
     <div class="col-2 col-xs-6">
         <div class="yellow" style="border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA;">
-            <img src="../../Content/img/creditsr.png" />&nbsp;&nbsp;&nbsp;123456
+            <img src="/Content/img/creditsr.png" />&nbsp;&nbsp;&nbsp;123456
         </div>
         <div class="green" style="border-bottom: 1px dashed #0098DA;">
-            <img src="../../Content/img/miningtimer.png" />&nbsp;&nbsp;&nbsp;00:00
+            <img src="/Content/img/miningtimer.png" />&nbsp;&nbsp;&nbsp;00:00
         </div>
     </div>
     <div class="col-2 col-xs-6" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px">
-        <img src="../../Content/img/shopr.png" style="display: block; margin: 0 auto; padding-top: 5px;" />
+        <img src="/Content/img/shopr.png" style="display: block; margin: 0 auto; padding-top: 5px;" />
     </div>
     <div class="col-4"></div>
-</div>
-<div class="row">
+</div>*@
+@*<div class="row">
     <div class="col-4"></div>
-    <div class="col-4 col-xs-12"><img src="../../Content/img/userlistr.png" style="display: block; margin: 0 auto; padding: 5px;" /></div>
+    <div class="col-4 col-xs-12"><img src="/Content/img/userlistr.png" style="display: block; margin: 0 auto; padding: 5px;" /></div>
     <div class="col-4"></div>
 </div>
 <div class="row almostWhite">
     <div class="col-4"></div>
-    <div class="col-4 col-xs-12 fontsize200" style="text-align: center; border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA;">
-        <button>Save</button>
-    </div>
+    <div class="col-4 col-xs-12 fontsize200" style="text-align: center;border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA;">Новости Опоры</div>
     <div class="col-4"></div>
-</div>
+</div>*@
+    <div class="row text-center">
+        <div class="col-4"></div>
+        <div class="col-2 col-xs-6 "><button class="btn btn-primary" style="margin-top: 10px;">Сохранить изменения</button></div>
+        @*<div class="col-2 col-xs-6"><button class="btn btn-default" style="margin-top: 10px;" onclick="window.location.href = '@Url.Action("Index", "Profile")';">Отмена</button></div>*@
+        <div class="col-2 col-xs-6"><input type="button" class="btn btn-default" value="Отмена" onclick="location.href='@Url.Action("Index","Profile")';" /></div>
+        <div class="col-4"></div>
 
-
-
+    </div>
+}
