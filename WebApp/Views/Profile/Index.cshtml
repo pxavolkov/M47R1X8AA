@@ -8,7 +8,7 @@
     <div class="col-4"></div>
     <div class="col-2 col-xs-6">
         <div style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; text-align: center; width: 174px; height: 174px;">
-            <a href="#" data-toggle="modal" data-target="#uploadPhoto">
+            <a href="@Url.Action("UploadPhoto", "Profile")" >
                 @if (!string.IsNullOrEmpty(Model.AvatarPath))
                 {
                     <img src="@Model.AvatarPath" style="border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;" />
@@ -77,10 +77,14 @@
                 </button>
             </div>
             <div class="modal-body">
+            @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post,
+                new {enctype = "multipart/form-data"}))
+            {
                 <label class="btn btn-primary" for="my-file-selector">
-                    <input id="my-file-selector" type="file" style="display:none;">
+                    <input id="my-file-selector" type="file" style="display: none;">
                     Загрузить фото
                 </label>
+            }
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

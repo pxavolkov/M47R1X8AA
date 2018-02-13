@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.2.0\lib\net45\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -177,14 +180,21 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AvatarViewModel.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\imgareaselect\border-anim-h.gif" />
+    <Content Include="Content\css\imgareaselect\border-anim-v.gif" />
+    <Content Include="Content\css\imgareaselect\border-h.gif" />
+    <Content Include="Content\css\imgareaselect\border-v.gif" />
+    <Content Include="Content\css\imgareaselect\imgareaselect-animated.css" />
+    <Content Include="Content\css\imgareaselect\imgareaselect-default.css" />
+    <Content Include="Content\css\imgareaselect\imgareaselect-deprecated.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\imgareaselect-default.css" />
     <Content Include="Content\img\BACK11.jpg" />
     <Content Include="Content\img\credits.png" />
     <Content Include="Content\img\creditsr.png" />
@@ -214,6 +224,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.imgareaselect.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -222,7 +233,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -242,6 +255,7 @@
     <Content Include="Views\Profile\Approval.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Gift\Credits100.cshtml" />
+    <Content Include="Views\Profile\UploadPhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

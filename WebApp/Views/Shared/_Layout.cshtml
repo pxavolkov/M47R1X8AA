@@ -10,19 +10,20 @@
     <link rel="icon" href="/Content/img/faviconb.png">
     <link rel="stylesheet" type="text/css" href="/Content/Site.css"/>
     <link rel="stylesheet" type="text/css" href="/Content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/css/imgareaselect/imgareaselect-default.css" />
 
 </head>
 <body class="bkgrnd" style="font-family: Hooge; text-transform: uppercase;">
-    <nav class="navbar navbar-toggleable-md">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        @Html.ActionLink("Virtech inner web", "Index", "Profile", new { area = "" }, new { @class = "navbar-brand yellow fontsize150" })
+<nav class="navbar navbar-toggleable-md" style="margin-left: auto; margin-right: auto">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    @Html.ActionLink("Virtech inner web", "Index", "Profile", new {area = ""}, new {@class = "navbar-brand yellow fontsize150"})
 
-        <div class="collapse navbar-collapse" id="navbarsMain">
-            @Html.Partial("_LoginPartial")
-        </div>
-    </nav>
+    <div class="collapse navbar-collapse " id="navbarsMain">
+        @Html.Partial("_LoginPartial")
+    </div>
+</nav>
     <div class="container">
         <div class="row">
             <div class="col-lg-3 hidden-md-down"></div>
@@ -34,10 +35,10 @@
 
 
 
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script
+    src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
     @RenderSection("scripts", required: false)
 </body>
 </html>
