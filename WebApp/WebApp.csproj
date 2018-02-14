@@ -220,6 +220,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -252,7 +253,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Profile\Approval.cshtml" />
+    <Content Include="Views\Account\Approval.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Gift\Credits100.cshtml" />
     <Content Include="Views\Profile\UploadPhoto.cshtml" />

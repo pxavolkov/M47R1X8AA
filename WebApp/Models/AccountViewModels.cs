@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Web;
+using System.Web.UI;
 
 namespace WebApp.Models
 {
@@ -11,10 +14,10 @@ namespace WebApp.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Запомнить меня")]
         public bool RememberMe { get; set; }
     }
 
@@ -28,13 +31,58 @@ namespace WebApp.Models
         [Required]
         //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Подтвердите пароль")]
+        [Compare("Password", ErrorMessage = "Пароль и подтверждение не совпадают")]
         public string ConfirmPassword { get; set; }
+
+        //Player
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Имя игрока")]
+        public string PlayerName { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Возраст игрока")]
+        public string PlayerAge { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Адрес страницы ВК или телефон")]
+        public string Info { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Хронические заболевания и противопоказания")]
+        public string Allergy { get; set; }
+
+        //Character
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Имя персонажа")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Фамилия персонажа")]
+        public string LastName { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Пол")]
+        public int Sex { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Возраст")]
+        public string Age { get; set; }
+
+        [Required]
+        [DataType(DataType.Upload)]
+        [Display(Name = "Квента")]
+        public HttpPostedFileBase Quenta { get; set; }
     }
 
 }

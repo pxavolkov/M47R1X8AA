@@ -14,6 +14,7 @@ namespace Model
         public Role Role { get; set; }
         public string PhotoPath { get; set; }
         public bool IsCitizen { get; set; }
+        public string QuentaPath { get; set; }
 
         public BalanceInfo Balance { get; set; }
 

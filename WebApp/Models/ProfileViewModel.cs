@@ -22,7 +22,26 @@ namespace WebApp.Models
                     var diff = Profile.Balance.MiningTime.Value - now;
                     return diff.ToString(@"mm\:ss");
                 }
-                return "00:00";
+                return "";
+            }
+        }
+
+        public int CurrentBalance
+        {
+            get
+            {
+                var c = Profile?.Balance?.Current;
+                if (!c.HasValue)
+                {
+                    return 0;
+                }
+
+                if (Profile.Balance.MiningTime.HasValue)
+                {
+                    c += 100;
+                }
+
+                return c.Value;
             }
         }
 

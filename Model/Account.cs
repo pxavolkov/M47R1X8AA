@@ -14,8 +14,10 @@ namespace Model
             return userIdentity;
         }
 
-        public string Login { get; set; }
+        public string PlayerName { get; set; }
+        public int PlayerAge { get; set; }
         public string Info { get; set; }
+        public string Allergy { get; set; }
         public DateTime RegistrationDate { get; set; }
 
         public ProfileInfo Profile { get; set; }

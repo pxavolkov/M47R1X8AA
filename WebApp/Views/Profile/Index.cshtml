@@ -27,8 +27,8 @@
     <div class="col-2 col-xs-6">
         <div class="fontsize200">Age...@Model.Profile.Age</div>
         <div class="fontsize200">Sex...@(Model.Profile.IsMale ? "M" : "F")</div>
-        <div><br /><br /></div>
-        <div class="@(Model.Profile.IsCitizen ? "green" : "orange")">Registration: @(Model.Profile.IsCitizen ? "YES" : "!NO!")</div>
+        @*<div><br /><br /></div>
+        <div class="@(Model.Profile.IsCitizen ? "green" : "orange")">Registration: @(Model.Profile.IsCitizen ? "YES" : "!NO!")</div>*@
     </div>
     <div class="col-4"></div>
 </div>
@@ -44,10 +44,21 @@
     <div class="col-4"></div>
     <div class="col-2 col-xs-6">
         <div class="yellow" style="border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA;">
-            <img src="/Content/img/creditsr.png" />&nbsp;&nbsp;&nbsp;@Model.Profile.Balance.Current
+            <img src="/Content/img/creditsr.png" />&nbsp;&nbsp;&nbsp;@Model.CurrentBalance
         </div>
         <div class="green" style="border-bottom: 1px dashed #0098DA;">
-            <img src="/Content/img/miningtimer.png" />&nbsp;&nbsp;&nbsp;@(Model.MiningTimeLeft)
+            @if (Model.MiningTimeLeft == "")
+    {
+        <form method="post" action="@Url.Action("Mining", "Profile")">
+            <button id="startMining" class="btn btn-default">Start mining</button>
+        </form>
+         
+    }
+    else
+    {
+        <img src="/Content/img/miningtimer.png" style="margin-right: 5px;" />@(Model.MiningTimeLeft)
+    }
+
         </div>
     </div>
     <div class="col-2 col-xs-6" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px">

@@ -29,23 +29,18 @@ namespace WebApp.Controllers
             return View(model);
         }
 
-        [AllowAnonymous]
-        public ActionResult Approval()
-        {
-            return View();
-        }
 
-        public ActionResult Edit()
-        {
-            var account = GetCurrentUserAccount();
-            if (account == null)
-            {
-                return RedirectToAction("LogOff", "Account");
-            }
+        //public ActionResult Edit()
+        //{
+        //    var account = GetCurrentUserAccount();
+        //    if (account == null)
+        //    {
+        //        return RedirectToAction("LogOff", "Account");
+        //    }
 
-            var model = new ProfileViewModel(account.Profile);
-            return View(model);
-        }
+        //    var model = new ProfileViewModel(account.Profile);
+        //    return View(model);
+        //}
 
         public ActionResult UploadPhoto()
         {
@@ -146,6 +141,18 @@ namespace WebApp.Controllers
                 account.Profile = MainContext.Profiles.Include(p => p.Balance).SingleOrDefault(r => r.ID == account.Profile.ID);
             }
             return account;
+        }
+
+        public ActionResult Mining()
+        {
+            var account = GetCurrentUserAccount();
+            if (account?.Profile?.Balance != null && !account.Profile.Balance.MiningTime.HasValue)
+            {
+                account.Profile.Balance.MiningTime = DateTime.Now.AddMinutes(5);
+            }
+            MainContext.SaveChanges();
+
+            return RedirectToAction("Index", "Profile");
         }
     }
 }

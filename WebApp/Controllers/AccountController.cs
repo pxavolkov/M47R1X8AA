@@ -69,6 +69,12 @@ namespace WebApp.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Approval()
+        {
+            return View();
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -76,11 +82,15 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Account { UserName = model.Email, Email = model.Email, RegistrationDate = DateTime.Now, LockoutEnabled = true, LockoutEndDateUtc = new DateTime(2019, 1, 1), Profile = new ProfileInfo()};
+                var user = new Account { UserName = model.Email, Email = model.Email, RegistrationDate = DateTime.Now,
+                    LockoutEnabled = true, LockoutEndDateUtc = new DateTime(2019, 1, 1), Allergy = model.Allergy, PlayerName = model.PlayerName,
+                    PlayerAge = Convert.ToInt32(model.PlayerAge), Info = model.Info,
+                    Profile = new ProfileInfo {FirstName = model.FirstName, LastName = model.LastName, Age = Convert.ToInt32(model.Age), IsMale = model.Sex == 1}};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Approval", "Profile");
+
+                    return RedirectToAction("Approval", "Account");
                 }
                 AddErrors(result);
             }
