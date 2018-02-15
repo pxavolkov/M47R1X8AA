@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -48,7 +49,7 @@ namespace WebApp.Controllers
                     //return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Неверный email или пароль");
                     return View(model);
             }
         }
@@ -82,14 +83,36 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Account { UserName = model.Email, Email = model.Email, RegistrationDate = DateTime.Now,
-                    LockoutEnabled = true, LockoutEndDateUtc = new DateTime(2019, 1, 1), Allergy = model.Allergy, PlayerName = model.PlayerName,
-                    PlayerAge = Convert.ToInt32(model.PlayerAge), Info = model.Info,
-                    Profile = new ProfileInfo {FirstName = model.FirstName, LastName = model.LastName, Age = Convert.ToInt32(model.Age), IsMale = model.Sex == 1}};
+                string path = null;
+                if (model.Quenta != null && model.Quenta.ContentLength > 0)
+                {
+                    path = Path.Combine(Server.MapPath("~/Upload/Quenta"), model.Quenta.FileName);
+                    model.Quenta.SaveAs(path);
+                }
+
+                var user = new Account {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    PlayerName = model.PlayerName,
+                    PlayerAge = Convert.ToInt32(model.PlayerAge),
+                    Info = model.Info,
+                    Allergy = model.Allergy,
+                    RegistrationDate = DateTime.Now,
+                    LockoutEnabled = true,
+                    LockoutEndDateUtc = new DateTime(2019, 1, 1), 
+                    
+                    Profile = new ProfileInfo
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Age = Convert.ToInt32(model.Age),
+                        IsMale = model.Sex == 1,
+                        QuentaPath = path
+                    }
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-
                     return RedirectToAction("Approval", "Account");
                 }
                 AddErrors(result);
