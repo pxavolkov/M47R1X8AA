@@ -9,17 +9,17 @@
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal blue", role = "form" }))
             {
                 <div class="row" style="margin-top: 10px;">
-                    <div class="col-3"></div>
-                    <div class="col-6">
+                    <div class="col-lg-3 hidden-md-down"></div>
+                    <div class="col-lg-6 col-12">
                         @Html.AntiForgeryToken()
                         <h4>Вход в матрицу (@Html.ActionLink("Регистрация", "Register"))</h4>
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-3"></div>
+                    <div class="col-lg-3 hidden-md-down"></div>
                 </div>
                 <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-6">
+                    <div class="col-lg-3 hidden-md-down"></div>
+                    <div class="col-lg-6 col-12">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
                             <div>
@@ -28,11 +28,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3"></div>
+                    <div class="col-lg-3 hidden-md-down"></div>
                 </div>
                 <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-6">
+                    <div class="col-lg-3 hidden-md-down"></div>
+                    <div class="col-lg-6 col-12">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                             <div>
@@ -41,11 +41,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3"></div>
+                    <div class="col-lg-3 hidden-md-down"></div>
                 </div>
                 <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-6">
+                    <div class="col-lg-3 hidden-md-down"></div>
+                    <div class="col-lg-6 col-12">
                         <div class="form-group">
                             <div class="col-md-offset-2">
                                 <div class="checkbox">
@@ -55,18 +55,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3"></div>
+                    <div class="col-lg-3 hidden-md-down"></div>
                 </div>
                 <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-6">
+                    <div class="col-lg-3 hidden-md-down"></div>
+                    <div class="col-lg-6 col-12">
                         <div class="form-group">
                             <div class="col-md-offset-2 text-center" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;">
                                 <input type="submit" value="Войти"style="background-color: transparent; border: 0px solid;  font-family:Hooge; cursor: pointer; width: 100%" class="green fontsize150" />
                             </div>
                         </div>
                     </div>
-                    <div class="col-3"></div>
+                    <div class="col-lg-3 hidden-md-down"></div>
                 </div>
             }
         </section>

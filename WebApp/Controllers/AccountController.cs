@@ -41,7 +41,6 @@ namespace WebApp.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    SaveUsernameToSession();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -51,16 +50,6 @@ namespace WebApp.Controllers
                 default:
                     ModelState.AddModelError("", "Неверный email или пароль");
                     return View(model);
-            }
-        }
-
-        private void SaveUsernameToSession()
-        {
-            if (Request.IsAuthenticated)
-            {
-                var userId = User.Identity.GetUserId();
-                var account = MainContext.Users.Include(u => u.Profile).SingleOrDefault(a => a.Id == userId);
-                Session["Username"] = account?.Profile == null ? string.Empty : $"{account.Profile.FirstName} {account.Profile.LastName}";
             }
         }
 
@@ -83,11 +72,23 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                var account = MainContext.Users.FirstOrDefault(a => a.Email == model.Email || a.UserName == model.Email);
+                if (account != null)
+                {
+                    ModelState.AddModelError("Email", "Этот email уже зарегистрирован");
+                    return View(model);
+                }
+
                 string path = null;
-                if (model.Quenta != null && model.Quenta.ContentLength > 0)
+                if (model.Quenta != null && model.Quenta.ContentLength > 0 && model.Quenta.ContentLength < 1024*1024) //1 MB limit 
                 {
                     path = Path.Combine(Server.MapPath("~/Upload/Quenta"), model.Quenta.FileName);
                     model.Quenta.SaveAs(path);
+                }
+                else if (model.Quenta != null && model.Quenta.ContentLength > 0)
+                {
+                    ModelState.AddModelError("Quenta", "Файл слишком большой");
+                    return View(model);
                 }
 
                 var user = new Account {
@@ -115,7 +116,7 @@ namespace WebApp.Controllers
                 {
                     return RedirectToAction("Approval", "Account");
                 }
-                AddErrors(result);
+                ModelState.AddModelError("", "Ошибка. Попробуйте зарегистрироваться еще раз или обратитесь к мастерам.");
             }
 
             // If we got this far, something failed, redisplay form

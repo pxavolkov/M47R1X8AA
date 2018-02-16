@@ -57,7 +57,7 @@ namespace WebApp.Models
         [StringLength(100, ErrorMessage = "Максимальная длина - 100 символов")]
         public string Info { get; set; }
         [DataType(DataType.Text)]
-        [Display(Name = "Хронические заболевания и противопоказания")]
+        [Display(Name = "Аллергии, противопоказания")]
         [StringLength(1000, ErrorMessage = "Максимальная длина - 1000 символов")]
         public string Allergy { get; set; }
 
