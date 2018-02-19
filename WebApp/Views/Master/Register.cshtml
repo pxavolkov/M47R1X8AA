@@ -1,0 +1,37 @@
+﻿@model List<Model.Account>
+
+@{
+    ViewBag.Title = "Регистрации";
+}
+
+<h2 class="green">Регистрации</h2>
+
+
+        <table class="table table-bordered lightGreen">
+            <thead>
+            <tr>
+                <th>Имя (возраст)</th>
+                <th>Email</th>
+                <th>Дата регистрации</th>
+                <th>Контакт</th>
+                <th>Аллергии</th>
+                <th>Персонаж</th>
+                <th>Квента</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var a in @Model)
+            {
+                <tr>
+                <td>@a.PlayerName (@a.PlayerAge)</td>
+                <td><a href="mailto:@a.Email">@a.Email</a></td>
+                <td>@a.RegistrationDate.ToString("dd/MM/yyyy")</td>
+                <td>@(a.Info.Contains("vk.com") ? Html.Raw($"<a href=\"{a.Info}\">{a.Info}</a>") : Html.Raw(a.Info))</td>
+                <td>@(string.IsNullOrEmpty(a.Allergy) ? "Нет" : a.Allergy)</td>
+                <td>Имя: @a.Profile.FirstName @a.Profile.LastName (возраст: @a.Profile.Age). Пол: @(a.Profile.IsMale ? "М" : "Ж")</td>
+                <td>@(string.IsNullOrEmpty(a.Profile.QuentaPath) ? Html.Raw("Нет") : Html.Raw($"<a href='{Path.Combine("/Upload/Quenta", Path.GetFileName(a.Profile.QuentaPath))}'>Скачать</a>"))</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+

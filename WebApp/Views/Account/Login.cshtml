@@ -12,7 +12,7 @@
                     <div class="col-lg-3 hidden-md-down"></div>
                     <div class="col-lg-6 col-12">
                         @Html.AntiForgeryToken()
-                        <h4>Вход в матрицу (@Html.ActionLink("Регистрация", "Register"))</h4>
+                        <h4 class="text-center">Вход в матрицу</h4>
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-lg-3 hidden-md-down"></div>
@@ -63,6 +63,27 @@
                         <div class="form-group">
                             <div class="col-md-offset-2 text-center" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;">
                                 <input type="submit" value="Войти"style="background-color: transparent; border: 0px solid;  font-family:Hooge; cursor: pointer; width: 100%" class="green fontsize150" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 hidden-md-down"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 hidden-md-down"></div>
+                    <div class="col-lg-6 col-12 topProgressBar"><div></div></div>
+                    <div class="col-lg-3 hidden-md-down"></div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-lg-3 hidden-md-down"></div>
+                    <div class="col-lg-6 col-12 text-center green">Нет логина/пароля?<br/>Пройдите процедуру регистрации!</div>
+                    <div class="col-lg-3 hidden-md-down"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 hidden-md-down"></div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 text-center green fontsize150" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; cursor: pointer;" onclick="location.href='@Url.Action("Register")';">
+                                Регистрация
                             </div>
                         </div>
                     </div>

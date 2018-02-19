@@ -175,6 +175,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GiftController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -257,6 +258,7 @@
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Gift\Credits100.cshtml" />
     <Content Include="Views\Profile\UploadPhoto.cshtml" />
+    <Content Include="Views\Master\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -285,7 +287,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2192</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
