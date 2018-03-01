@@ -21,7 +21,7 @@
                     <div class="col-lg-3 hidden-md-down"></div>
                     <div class="col-lg-6 col-12">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                            @Html.LabelFor(m => m.Email, new { @class = "control-label" })
                             <div>
                                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
@@ -34,7 +34,7 @@
                     <div class="col-lg-3 hidden-md-down"></div>
                     <div class="col-lg-6 col-12">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
                             <div>
                                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
@@ -75,14 +75,14 @@
                 </div>
                 <div class="row" style="margin-top: 10px;">
                     <div class="col-lg-3 hidden-md-down"></div>
-                    <div class="col-lg-6 col-12 text-center green">Нет логина/пароля?<br/>Пройдите процедуру регистрации!</div>
+                    <div class="col-lg-6 col-12 text-center green">Нет&nbsp;&nbsp;логина/пароля?<br />Пройдите&nbsp;&nbsp;процедуру&nbsp;&nbsp;регистрации!</div>
                     <div class="col-lg-3 hidden-md-down"></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3 hidden-md-down"></div>
                     <div class="col-lg-6 col-12">
                         <div class="form-group">
-                            <div class="col-md-offset-2 text-center green fontsize150" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; cursor: pointer;" onclick="location.href='@Url.Action("Register")';">
+                            <div class="col-md-offset-2 text-center green fontsize150" style="margin-top: 15px; border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; cursor: pointer;" onclick="location.href='@Url.Action("Register")';">
                                 Регистрация
                             </div>
                         </div>

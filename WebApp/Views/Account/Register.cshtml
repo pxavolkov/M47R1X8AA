@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12" style="margin-top: 10px;">
-            <h4>Введите данные для логина</h4>
+            <h4 class="text-center">Введите данные для логина</h4>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         </div>
         <div class="col-lg-3 hidden-md-down"></div>
@@ -19,7 +19,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label", style = "white-space: nowrap;" })
+                @Html.LabelFor(m => m.Email, new { @class = "control-label", style = "white-space: nowrap;" })
                 <div>
                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label", style = "white-space: nowrap;" })
+                @Html.LabelFor(m => m.Password, new { @class = "control-label", style = "white-space: nowrap;" })
                 <div>
                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
@@ -45,7 +45,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label", style = "white-space: nowrap;" })
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label", style = "white-space: nowrap;" })
                 <div>
                     @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
@@ -57,7 +57,7 @@
     <div class="row">
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12" style="margin-top: 10px;">
-            <h4>Введите данные игрока</h4>
+            <h4 class="text-center">Введите данные игрока</h4>
         </div>
         <div class="col-lg-3 hidden-md-down"></div>
     </div>
@@ -65,7 +65,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.PlayerName, new { @class = "col-md-2 control-label", style = "white-space: nowrap;" })
+                @Html.LabelFor(m => m.PlayerName, new { @class = "control-label", style = "white-space: nowrap;" })
                 <div>
                     @Html.TextBoxFor(m => m.PlayerName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.PlayerName, "", new { @class = "text-danger" })
@@ -78,7 +78,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.PlayerAge, new { @class = "col-md-2 control-label", style = "white-space: nowrap;" })
+                @Html.LabelFor(m => m.PlayerAge, new { @class = "control-label", style = "white-space: nowrap;" })
                 <div>
                     @Html.TextBoxFor(m => m.PlayerAge, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.PlayerAge, "", new { @class = "text-danger" })
@@ -91,7 +91,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.Info, new { @class = "col-md-2 control-label", style = "white-space: nowrap;" })
+                @Html.LabelFor(m => m.Info, new { @class = "control-label", style = "white-space: nowrap;" })
                 <div>
                     @Html.TextBoxFor(m => m.Info, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Info, "", new { @class = "text-danger" })
@@ -104,7 +104,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.Allergy, new { @class = "col-md-2 control-label", style = "white-space: nowrap;" })
+                @Html.LabelFor(m => m.Allergy, new { @class = "control-label", style = "white-space: nowrap;" })
                 <div>
                     @Html.TextBoxFor(m => m.Allergy, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Allergy, "", new { @class = "text-danger" })
@@ -116,7 +116,7 @@
     <div class="row">
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12" style="margin-top: 10px;">
-            <h4>Введите данные персонажа</h4>
+            <h4 class="text-center">Введите данные персонажа</h4>
         </div>
         <div class="col-lg-3 hidden-md-down"></div>
     </div>
@@ -124,7 +124,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label", style = "white-space: nowrap;" })
+                @Html.LabelFor(m => m.FirstName, new { @class = "control-label", style = "white-space: nowrap;" })
                 <div>
                     @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
@@ -137,7 +137,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label", style = "white-space: nowrap;" })
+                @Html.LabelFor(m => m.LastName, new { @class = "control-label", style = "white-space: nowrap;" })
                 <div>
                     @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
@@ -150,7 +150,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.Sex, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.Sex, new { @class = "control-label" })
                 <div>
                     <select id="sex" name="sex" class="form-control">
                         <option value="1" selected="selected">M</option>
@@ -165,7 +165,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.Age, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.Age, new { @class = "control-label" })
                 <div>
                     @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
@@ -178,7 +178,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.Quenta, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.Quenta, new { @class = "control-label" })
                 <div>
                     @*@Html.TextBoxFor(m => m.Quenta, new { type = "file" })*@
                     <label class="btn btn-primary" for="Quenta">

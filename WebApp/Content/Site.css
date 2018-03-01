@@ -17,14 +17,14 @@
     font-style:normal
 }
 body{
-    background:url(img/BACK11.jpg) center center no-repeat fixed;
+    background:url(img/BACK11.png) center center no-repeat fixed;
     -webkit-background-size:cover;
     -moz-background-size:cover;
     -o-background-size:cover;
     background-size:cover
 }
 .bkgrnd{
-    background-color:#1A5784!important
+    background-color:#00212F!important
 }
 
 /*#loader{
