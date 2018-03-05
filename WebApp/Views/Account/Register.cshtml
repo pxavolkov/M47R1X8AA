@@ -152,10 +152,10 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Sex, new { @class = "control-label" })
                 <div>
-                    <select id="sex" name="sex" class="form-control">
-                        <option value="1" selected="selected">M</option>
-                        <option value="0">Ж</option>
-                    </select>
+                    <input type="radio" id="sexMale" name="sex" value="1" checked="checked">
+                    <label for="sexMale">М</label>
+                    <input type="radio" id="sexFemale" name="sex" value="0">
+                    <label for="sexFemale">Ж</label>
                 </div>
             </div>
         </div>
@@ -196,7 +196,7 @@
         <div class="col-lg-3 hidden-md-down"></div>
         <div class="col-lg-6 col-12">
             <div class="form-group">
-                <div class="col-md-offset-2 text-center" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;">
+                <div class="col-md-offset-2 text-center hoverlight" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;">
                     <input type="submit" value="Зарегистрироваться"style="background-color: transparent; border: 0px solid;  font-family:Hooge; cursor: pointer; width: 100%" class="blue fontsize150" />
                 </div>
             </div>

@@ -27,6 +27,14 @@ body{
     background-color:#00212F!important
 }
 
+.hoverlight {
+    opacity: .7
+}
+
+.hoverlight:hover {
+    opacity: 1
+}
+
 /*#loader{
     position:fixed;
     padding:0;
@@ -149,8 +157,8 @@ body{
 .mainFont{
     font-family:RussoOne
 }*/
-.blue{
-    color:#0098DA
+.blue {
+    color: #0098DA
 }
 .green{
     color:#9DD3AF

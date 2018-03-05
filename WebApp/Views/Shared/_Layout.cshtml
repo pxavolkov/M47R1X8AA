@@ -15,16 +15,16 @@
 </head>
 <body class="bkgrnd" style="font-family: Hooge; text-transform: uppercase;">
 <nav class="navbar navbar-toggleable-md">
-    <div class="container text-center">
+    <div class="container">
         
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
+        @*<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-        @Html.ActionLink("Virtech inner web", "Index", "Profile", new {area = ""}, new {@class = "navbar-brand yellow fontsize150", style = "margin-left: 30%"})
+        </button>*@
+        @Html.ActionLink("Virtech inner web", "Index", "Profile", new {area = ""}, new {@class = "navbar-brand yellow fontsize150", style = "margin-left: auto; margin-right: auto;"})
 
-        <div class="collapse navbar-collapse " id="navbarsMain" style="width: 200px;">
+        @*<div class="collapse navbar-collapse " id="navbarsMain" style="width: 200px;">
             @Html.Partial("_LoginPartial")
-        </div>
+        </div>*@
     </div>
 </nav>
     <div class="container">
