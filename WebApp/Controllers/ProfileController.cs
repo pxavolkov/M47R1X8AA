@@ -25,7 +25,10 @@ namespace WebApp.Controllers
                 return RedirectToAction("LogOff", "Account");
             }
 
-            var model = new ProfileViewModel(account.Profile);
+            var readNews = MainContext.ReadNews.Where(r => r.UserId == account.Id).Select(r => r.NewsId).ToList();
+            var unreadNews = MainContext.News.Where(u => !readNews.Contains(u.ID));
+            
+            var model = new ProfileViewModel(account.Profile, unreadNews.Count());
             return View(model);
         }
 
@@ -146,11 +149,22 @@ namespace WebApp.Controllers
         public ActionResult Mining()
         {
             var account = GetCurrentUserAccount();
-            if (account?.Profile?.Balance != null && !account.Profile.Balance.MiningTime.HasValue)
+            if (account?.Profile?.Balance != null)
             {
-                account.Profile.Balance.MiningTime = DateTime.Now.AddMinutes(5);
+                if (!account.Profile.Balance.MiningTime.HasValue)
+                {
+                    account.Profile.Balance.MiningTime = DateTime.Now.AddMinutes(5);
+                    MainContext.SaveChanges();
+                }
+                else if (account.Profile.Balance.MiningTime < DateTime.Now)
+                {
+                    account.Profile.Balance.Current += 100;
+                    account.Profile.Balance.MiningTime = DateTime.Now.AddMinutes(5);
+                    MainContext.SaveChanges();
+                }
+                
             }
-            MainContext.SaveChanges();
+            
 
             return RedirectToAction("Index", "Profile");
         }

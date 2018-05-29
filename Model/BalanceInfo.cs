@@ -17,7 +17,7 @@ namespace Model
                 if (MiningTime != null && MiningTime < DateTime.Now) //mining
                 {
                     _current += 100; //from web.config
-                    MiningTime = null;
+                    //MiningTime = null;
                 }
                 return _current;
             }

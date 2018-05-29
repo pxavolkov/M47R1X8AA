@@ -1,0 +1,18 @@
+﻿@model List<Model.News>
+
+@{
+    ViewBag.Title = "Новости Опоры";
+}
+
+@foreach (var m in Model)
+{
+    <div class="row blue fontsize200">
+        <div class="col-4"></div>
+        <div class="col-4 col-xs-12">
+            <div class="fontsize150">@m.Title</div>
+            <div>@m.Text</div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <hr/>
+}

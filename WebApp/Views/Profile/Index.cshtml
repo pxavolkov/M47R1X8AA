@@ -62,17 +62,17 @@
         </div>
     </div>
     <div class="col-2 col-xs-6" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px">
-        <img src="/Content/img/shopr.png" style="display: block; margin: 0 auto; padding-top: 5px;" />
+        <a href="@Url.Action("Index", "Shop")"><img src="/Content/img/shopr.png" style="display: block; margin: 0 auto; padding-top: 5px;" /></a>
     </div>
     <div class="col-4"></div>
 </div>
 <div class="row">
     <div class="col-4"></div>
-    <div class="col-4 col-xs-12"><img src="/Content/img/userlistr.png" style="display: block; margin: 0 auto; padding: 5px;" /></div>
+    <div class="col-4 col-xs-12"><a href="@Url.Action("Index", "User")"><img src="/Content/img/userlistr.png" style="display: block; margin: 0 auto; padding: 5px;" /></a></div>
     <div class="col-4"></div>
 </div>
 <div class="row almostWhite">
     <div class="col-4"></div>
-    <div class="col-4 col-xs-12 fontsize200" style="text-align: center;border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA;">Новости Опоры</div>
+    <div class="col-4 col-xs-12 fontsize200" style="text-align: center;border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA;"><a href="@Url.Action("Index", "News")">Новости Опоры @Html.Raw(Model.NewsCount == 0 ? "" : "(" + Model.NewsCount + ")")</a></div>
     <div class="col-4"></div>
 </div>

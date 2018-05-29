@@ -21,5 +21,7 @@ namespace Model
         }
 
         public DbSet<ProfileInfo> Profiles { get; set; }
+        public DbSet<News> News { get; set; }
+        public DbSet<ReadNews> ReadNews { get; set; }
     }
 }

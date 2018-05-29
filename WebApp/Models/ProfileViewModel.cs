@@ -45,9 +45,12 @@ namespace WebApp.Models
             }
         }
 
-        public ProfileViewModel(ProfileInfo profile)
+        public int NewsCount { get; set; }
+
+        public ProfileViewModel(ProfileInfo profile, int newsCount)
         {
             Profile = profile ?? new ProfileInfo();
+            NewsCount = newsCount;
         }
     }
 }
