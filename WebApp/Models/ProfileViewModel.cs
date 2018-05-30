@@ -36,11 +36,6 @@ namespace WebApp.Models
                     return 0;
                 }
 
-                if (Profile.Balance.MiningTime.HasValue)
-                {
-                    c += 100;
-                }
-
                 return c.Value;
             }
         }

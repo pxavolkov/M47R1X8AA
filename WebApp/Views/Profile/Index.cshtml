@@ -49,8 +49,14 @@
         <div class="green" style="border-bottom: 1px dashed #0098DA;">
             @if (Model.MiningTimeLeft == "")
     {
-        <form method="post" action="@Url.Action("Mining", "Profile")">
-            <button id="startMining" class="btn btn-default">Start mining</button>
+        <form id="miningForm" method="post" action="@Url.Action("Mining", "Profile")">
+            <div class="form-group">
+                <div class="col-md-offset-2 text-center green hoverlight" 
+                     style="margin-top: 15px; border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; cursor: pointer;" 
+                     onclick="location.href = '@Url.Action("Mining", "Profile")';">
+                    Mining
+                </div>
+            </div>
         </form>
          
     }
@@ -61,7 +67,7 @@
 
         </div>
     </div>
-    <div class="col-2 col-xs-6" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px">
+    <div class="col-2 col-xs-6" style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; display:flex;align-items:center;justify-content:center;">
         <a href="@Url.Action("Index", "Shop")"><img src="/Content/img/shopr.png" style="display: block; margin: 0 auto; padding-top: 5px;" /></a>
     </div>
     <div class="col-4"></div>
@@ -73,6 +79,10 @@
 </div>
 <div class="row almostWhite">
     <div class="col-4"></div>
-    <div class="col-4 col-xs-12 fontsize200" style="text-align: center;border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA;"><a href="@Url.Action("Index", "News")">Новости Опоры @Html.Raw(Model.NewsCount == 0 ? "" : "(" + Model.NewsCount + ")")</a></div>
-    <div class="col-4"></div>
+    <div class="col-4 col-xs-12 fontsize200" style="text-align: center; border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA; cursor: pointer;"
+         onclick="location.href = '@Url.Action("Index", "News")';">Новости Опоры</div>
+    <div class="col-4">
+
+        <div style="@Html.Raw(Model.NewsCount == 0 ? "display: none;" : "") background: #008DD5; width: 35px; height: 35px; border-radius: 50%; margin-left: -60px; margin-top: -10px;" class="fontsize150">&nbsp;&nbsp;&nbsp;&nbsp;@Model.NewsCount</div>
+    </div>
 </div>

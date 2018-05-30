@@ -16,14 +16,14 @@ namespace WebApp.Controllers
         // GET: User
         public ActionResult Index()
         {
-            var models = GetUsers("");
-            return View(models);
+            var users = GetUsers("");
+            return View(new SearchViewModel{Users = users, SearchTerm = ""});
         }
 
         public ActionResult Search(string name)
         {
-            var models = GetUsers(name);
-            return View("Index", models);
+            var users = GetUsers(name);
+            return View("Index", new SearchViewModel { Users = users, SearchTerm = name });
         }
 
         public void Transfer(int value, string userId)

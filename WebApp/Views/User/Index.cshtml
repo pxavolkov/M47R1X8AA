@@ -1,13 +1,12 @@
-﻿@model List<WebApp.Models.UserViewModel>
+﻿@model WebApp.Models.SearchViewModel
 @{
     ViewBag.Title = "Пользователи";
 }
 
-
 <div class="row blue">
     <div class="col-4"></div>
     <div class="col-4 col-xs-12">
-        <div>users online: @Model.Count</div>
+        <div class="green text-center">users online: @Model.Users.Count</div>
     </div>
     <div class="col-4"></div>
 </div>
@@ -15,20 +14,68 @@
 <div class="row blue">
     <div class="col-4"></div>
     <div class="col-4 col-xs-12">
-        <div><form method="post" action="~/User/Search"><input id="name" name="name" type="text" placeholder="введите имя пользователя" /></form></div>
+        <div class="text-center"><form id="searchForm" method="get" action="~/User/Search"><img src="/Content/img/search.png" onclick="javascript: document.getElementById('searchForm').submit();"/>
+            <input style="background: transparent; border: none; width: 250px" id="nameSearch" name="name" type="text" value="@Model.SearchTerm" placeholder="введите имя пользователя" /></form></div>
     </div>
     <div class="col-4"></div>
 </div>
 
-@foreach (var user in Model)
+@foreach (var user in Model.Users)
 {
-<div class="row blue">
-    <div class="col-4"></div>
-    <div class="col-4 col-xs-12">
-        <div>@user.FirstName</div>
-        <div>@user.LastName</div>
-        <div><button onclick="/*add validation*/var money = prompt('How much?', 1); $.ajax({type: 'POST', url: '/User/Transfer', data: {value: money, userId: '@user.UserId'}});">Send money</button></div>
+    <div class="row blue">
+        <div class="col-4"></div>
+        <div class="col-1 col-xs-3" style="border-top: 1px dashed #0098DA; ">
+            <div style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; text-align: center; 
+                                                                                                                                                                                                                                                                           width: 87px; height: 87px; margin-top: 5px; margin-bottom: 5px;">
+                @if (!string.IsNullOrEmpty(user.AvatarPath))
+                {
+                    <img src="@user.AvatarPath" style="border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;" />
+                }
+                else
+                {
+                    <div>^</div>
+                    <div>^</div>
+                }
+            </div>
+        </div>
+        <div class="col-2 col-xs-6" style="border-top: 1px dashed #0098DA; ">
+            <div class="green">@user.FirstName</div>
+            <div class="green">@user.LastName</div>
+            <div><img src="/Content/img/mail.png" style="height: 42px; cursor: pointer;" title="Отправить сообщение" onclick="$('@Html.Raw("#ma" + user.UserId)').show();$('@Html.Raw("#ma" + user.UserId)').fadeOut(3000);"/></div>
+        </div>
+        <div class="col-1 col-xs-3" style="border-top: 1px dashed #0098DA; position: relative; min-height: 87px;">
+            <div style="position: absolute; bottom: 5px;">
+                <img title="Перевести кредиты" onclick="/*add validation*/var money = prompt('Сколько перевести?', 1);if (money) $.ajax({ type: 'POST', url: '/User/Transfer', data: { value: money, userId: '@user.UserId' }, success: function (){$('@Html.Raw("#sa" + user.UserId)').show();$('@Html.Raw("#sa" + user.UserId)').fadeOut(3000);}, error: function (){$('@Html.Raw("#ea" + user.UserId)').show();$('@Html.Raw("#ea" + user.UserId)').fadeOut(3000);} });" src="/Content/img/sendmoney.png" style="height: 42px; cursor: pointer;"/>
+            </div>
+        </div>
+        <div class="col-4"></div>
     </div>
-    <div class="col-4"></div>
-</div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 col-xs-12">
+            <div id="@Html.Raw("sa" + user.UserId)" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Кредиты успешно перечислены
+            </div>
+            <div id="@Html.Raw("ma" + user.UserId)" class="alert alert-warning alert-dismissible fade show collapse" role="alert" style="display: none">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Сообщения отключены системой защиты
+            </div>
+            <div id="@Html.Raw("ea" + user.UserId)" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Ошибка при переводе кредитов. Обратитесь к администрации
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
 }
+
+<script>
+
+</script>

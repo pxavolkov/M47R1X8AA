@@ -6,12 +6,27 @@ using System.Web.Mvc;
 
 namespace WebApp.Controllers
 {
-    public class GiftController : Controller
+    [Authorize]
+    public class GiftController : BaseController
     {
         // GET: Gift
         public ActionResult Credits(string id)
         {
-            return View("Credits100");
+            var gift = MainContext.Gifts.SingleOrDefault(g => g.Code == id);
+            if (gift != null && gift.UsedUserID == null)
+            {
+                var account = GetCurrentUserAccount();
+                gift.UsedUserID = account.Id;
+                gift.UsedDate = DateTime.Now;
+                account.Profile.Balance.Current += gift.CreditsBonus;
+                MainContext.SaveChanges();
+                return View("Credits100");
+            }
+            else
+            {
+                return View("WrongCode");
+            }
+            
         }
     }
 }

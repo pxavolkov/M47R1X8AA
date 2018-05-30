@@ -268,3 +268,29 @@ body{
     width:30%
 }
 */
+#nameSearch::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #0098DA;
+    font-family: Hooge;
+    opacity: 0.6;
+}
+
+#nameSearch::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #0098DA;
+    font-family: Hooge;
+    opacity: 0.6;
+}
+#nameSearch::-moz-placeholder { /* Firefox 19+ */
+    color: #0098DA;
+    font-family: Hooge;
+    opacity: 0.6;
+}
+#nameSearch:-ms-input-placeholder { /* IE 10+ */
+    color: #0098DA;
+    font-family: Hooge;
+    opacity: 0.6;
+}
+#nameSearch:-moz-placeholder { /* Firefox 18- */
+    color: #0098DA;
+    font-family: Hooge;
+    opacity: 0.6;
+}

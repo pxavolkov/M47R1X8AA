@@ -135,37 +135,20 @@ namespace WebApp.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
-        private Account GetCurrentUserAccount()
-        {
-            var userId = User.Identity.GetUserId();
-            var account = MainContext.Users.Include(u => u.Profile).SingleOrDefault(a => a.Id == userId);
-            if (account != null)
-            {
-                account.Profile = MainContext.Profiles.Include(p => p.Balance).SingleOrDefault(r => r.ID == account.Profile.ID);
-            }
-            return account;
-        }
+        
 
         public ActionResult Mining()
         {
             var account = GetCurrentUserAccount();
             if (account?.Profile?.Balance != null)
             {
-                if (!account.Profile.Balance.MiningTime.HasValue)
+                if (!account.Profile.Balance.MiningTime.HasValue || account.Profile.Balance.MiningTime < DateTime.Now)
                 {
-                    account.Profile.Balance.MiningTime = DateTime.Now.AddMinutes(5);
+                    var setting = System.Configuration.ConfigurationManager.AppSettings["MiningTimeMinutes"];
+                    account.Profile.Balance.MiningTime = DateTime.Now.AddMinutes(int.Parse(setting));
                     MainContext.SaveChanges();
                 }
-                else if (account.Profile.Balance.MiningTime < DateTime.Now)
-                {
-                    account.Profile.Balance.Current += 100;
-                    account.Profile.Balance.MiningTime = DateTime.Now.AddMinutes(5);
-                    MainContext.SaveChanges();
-                }
-                
             }
-            
-
             return RedirectToAction("Index", "Profile");
         }
     }

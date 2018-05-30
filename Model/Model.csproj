@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="BalanceInfo.cs" />
+    <Compile Include="Gift.cs" />
     <Compile Include="MainContext.cs" />
     <Compile Include="Migrations\201802151511460_InitialCreate.cs" />
     <Compile Include="Migrations\201802151511460_InitialCreate.Designer.cs">
@@ -67,6 +68,10 @@
     <Compile Include="Migrations\201805292315101_News.cs" />
     <Compile Include="Migrations\201805292315101_News.Designer.cs">
       <DependentUpon>201805292315101_News.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805302239560_Gift.cs" />
+    <Compile Include="Migrations\201805302239560_Gift.Designer.cs">
+      <DependentUpon>201805302239560_Gift.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="News.cs" />
@@ -85,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805292315101_News.resx">
       <DependentUpon>201805292315101_News.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805302239560_Gift.resx">
+      <DependentUpon>201805302239560_Gift.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

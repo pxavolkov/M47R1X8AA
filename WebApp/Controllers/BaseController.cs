@@ -51,6 +51,29 @@ namespace WebApp.Controllers
             }
         }
 
+        protected Account GetCurrentUserAccount()
+        {
+            var userId = User.Identity.GetUserId();
+            var account = GetAccount(userId);
+            return account;
+        }
+
+        protected Account GetAccount(string userId)
+        {
+            var account = MainContext.Users.Include(u => u.Profile).Include(u => u.Profile.Balance)
+                .SingleOrDefault(a => a.Id == userId);
+            var miningTime = account?.Profile?.Balance?.MiningTime;
+            if (miningTime != null && miningTime < DateTime.Now)
+            {
+                account.Profile.Balance.MiningTime = null;
+                var setting = System.Configuration.ConfigurationManager.AppSettings["MiningCredits"];
+                account.Profile.Balance.Current += int.Parse(setting);
+                MainContext.SaveChanges();
+            }
+
+            return account;
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
