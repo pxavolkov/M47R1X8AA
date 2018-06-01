@@ -26,25 +26,30 @@ namespace WebApp.Controllers
             return View("Index", new SearchViewModel { Users = users, SearchTerm = name });
         }
 
-        public void Transfer(int value, string userId)
+        public JsonResult Transfer(int value, string userId)
         {
             if (value > 0)
             {
                 var account = GetCurrentUserAccount();
-                var accountTo = MainContext.Users.Include(u => u.Profile).SingleOrDefault(a => a.Id == userId);
-                if (accountTo != null)
+                var accountTo = GetAccount(userId);
+                if (account == null || accountTo == null)
                 {
-                    accountTo.Profile = MainContext.Profiles.Include(p => p.Balance).SingleOrDefault(r => r.ID == accountTo.Profile.ID);
+                    return Json(new { success = false, error = "Ошибка. Попробуйте еще раз" });
                 }
-                if (account == null || accountTo == null || account.Profile.Balance.Current < value)
+
+                if (account.Profile.Balance.Current < value)
                 {
-                    throw new ArgumentException();
+                    return Json(new { success = false, error = "Недостаточно средств" });
                 }
+                
+                if (value == 25) throw new Exception();
 
                 accountTo.Profile.Balance.Current += value;
                 account.Profile.Balance.Current -= value;
                 MainContext.SaveChanges();
             }
+
+            return Json(new {success = true});
         }
 
         private List<UserViewModel> GetUsers(string name)
@@ -67,17 +72,6 @@ namespace WebApp.Controllers
 
             q = q.OrderBy(u => u.Profile.FirstName);
             return q.ToList();
-        }
-
-        private Account GetCurrentUserAccount()
-        {
-            var userId = User.Identity.GetUserId();
-            var account = MainContext.Users.Include(u => u.Profile).SingleOrDefault(a => a.Id == userId);
-            if (account != null)
-            {
-                account.Profile = MainContext.Profiles.Include(p => p.Balance).SingleOrDefault(r => r.ID == account.Profile.ID);
-            }
-            return account;
         }
     }
 }

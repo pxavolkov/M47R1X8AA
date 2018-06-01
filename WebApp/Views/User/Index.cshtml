@@ -14,10 +14,35 @@
 <div class="row blue">
     <div class="col-4"></div>
     <div class="col-4 col-xs-12">
-        <div class="text-center"><form id="searchForm" method="get" action="~/User/Search"><img src="/Content/img/search.png" onclick="javascript: document.getElementById('searchForm').submit();"/>
-            <input style="background: transparent; border: none; width: 250px" id="nameSearch" name="name" type="text" value="@Model.SearchTerm" placeholder="введите имя пользователя" /></form></div>
+        <div class="text-center">
+            <form id="searchForm" method="get" action="~/User/Search">
+                <img src="/Content/img/search.png" style="height: 15px;" onclick="javascript: document.getElementById('searchForm').submit();" />
+                <input style="background: transparent; border: none; width: 250px" id="nameSearch" name="name" type="text" value="@Model.SearchTerm" placeholder="введите имя пользователя" />
+            </form>
+        </div>
     </div>
     <div class="col-4"></div>
+</div>
+
+<div class="modal fade transferModal" tabindex="-1" role="dialog" aria-hidden="true" id="transferModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="background-color: #00212F; color: #fff;">
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="amount" class="col-form-label">Сумма:</label>
+                        <input type="text" class="form-control" id="amount" value="100">
+                        <span id="errorMessage" style="display: none; color: red;"></span>
+                        <input type="hidden" id="userId"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary"  onclick="Transfer($('#userId').val());">Перевести</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @foreach (var user in Model.Users)
@@ -25,7 +50,7 @@
     <div class="row blue">
         <div class="col-4"></div>
         <div class="col-1 col-xs-3" style="border-top: 1px dashed #0098DA; ">
-            <div style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; text-align: center; 
+            <div style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; text-align: center;
                                                                                                                                                                                                                                                                            width: 87px; height: 87px; margin-top: 5px; margin-bottom: 5px;">
                 @if (!string.IsNullOrEmpty(user.AvatarPath))
                 {
@@ -41,11 +66,13 @@
         <div class="col-2 col-xs-6" style="border-top: 1px dashed #0098DA; ">
             <div class="green">@user.FirstName</div>
             <div class="green">@user.LastName</div>
-            <div><img src="/Content/img/mail.png" style="height: 42px; cursor: pointer;" title="Отправить сообщение" onclick="$('@Html.Raw("#ma" + user.UserId)').show();$('@Html.Raw("#ma" + user.UserId)').fadeOut(3000);"/></div>
+            <div><img src="/Content/img/mail.png" style="height: 42px; cursor: pointer;" title="Отправить сообщение" onclick="$('@Html.Raw("#ma" + user.UserId)').show();$('@Html.Raw("#ma" + user.UserId)').fadeOut(3000);" /></div>
         </div>
         <div class="col-1 col-xs-3" style="border-top: 1px dashed #0098DA; position: relative; min-height: 87px;">
             <div style="position: absolute; bottom: 5px;">
-                <img title="Перевести кредиты" onclick="/*add validation*/var money = prompt('Сколько перевести?', 1);if (money) $.ajax({ type: 'POST', url: '/User/Transfer', data: { value: money, userId: '@user.UserId' }, success: function (){$('@Html.Raw("#sa" + user.UserId)').show();$('@Html.Raw("#sa" + user.UserId)').fadeOut(3000);}, error: function (){$('@Html.Raw("#ea" + user.UserId)').show();$('@Html.Raw("#ea" + user.UserId)').fadeOut(3000);} });" src="/Content/img/sendmoney.png" style="height: 42px; cursor: pointer;"/>
+                <button class="btn" style="background-color: transparent" data-toggle="modal" data-target=".transferModal">
+                    <img data-user="@user.UserId" title="Перевести кредиты" onclick="$('#userId').val(this.getAttribute('data-user'));$('#errorMessage').hide();$('#amount').val(100);" src="/Content/img/sendmoney.png" style="height: 42px; cursor: pointer;" />
+                </button>
             </div>
         </div>
         <div class="col-4"></div>
@@ -69,13 +96,65 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                Ошибка при переводе кредитов. Обратитесь к администрации
+                <span id="@Html.Raw("eatext" + user.UserId)">Ошибка при переводе кредитов. Обратитесь к администрации</span>
             </div>
         </div>
         <div class="col-4"></div>
     </div>
 }
 
-<script>
 
+
+<script>
+    
+
+    function Transfer(userId) {
+        var amount = $("#amount").val();
+
+        var message = validateAmount(amount);
+        if (!message) {
+            
+            $.ajax({
+                type: 'POST', url: '/User/Transfer', data: { value: amount, userId: userId },
+                success: function (data) { if (data.success) TransferSuccess(userId); else TransferError(data.error, userId); },
+                error: function (data) { TransferError("Ошибка. Попробуйте позже", userId); }
+            });
+            $("#transferModal").modal('hide');
+        } else {
+            $("#errorMessage").text(message);
+            $("#errorMessage").show();
+        }
+
+        
+    }
+
+    function validateAmount(amount) {
+        var message = "";
+        if (!amount) {
+            message = "Введите сумму";
+        } else if (!isInt(amount)) {
+            message = "Введите целое число";
+        }
+        return message;
+    }
+
+    function isInt(value) {
+        var x;
+        if (isNaN(value)) {
+            return false;
+        }
+        x = parseFloat(value);
+        return (x | 0) === x;
+    }
+
+    function TransferError(errorMessage, userId) {
+        $("#eatext" + userId).text(errorMessage);
+        $("#ea" + userId).show();
+        $("#ea" + userId).fadeOut(3000);
+    }
+
+    function TransferSuccess(userId) {
+        $("#sa" + userId).show();
+        $("#sa" + userId).fadeOut(3000);
+    }
 </script>
