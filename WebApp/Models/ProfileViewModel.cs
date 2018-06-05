@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Model;
 
 namespace WebApp.Models
@@ -20,7 +21,8 @@ namespace WebApp.Models
                 if (Profile?.Balance?.MiningTime != null && Profile.Balance.MiningTime.Value > now)
                 {
                     var diff = Profile.Balance.MiningTime.Value - now;
-                    return diff.ToString(@"mm\:ss");
+                    //return diff.ToString(@"mm\:ss");
+                    return Math.Truncate(diff.TotalSeconds).ToString(CultureInfo.InvariantCulture);
                 }
                 return "";
             }

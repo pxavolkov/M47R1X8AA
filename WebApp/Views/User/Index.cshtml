@@ -17,7 +17,7 @@
         <div class="text-center">
             <form id="searchForm" method="get" action="~/User/Search">
                 <img src="/Content/img/search.png" style="height: 15px;" onclick="javascript: document.getElementById('searchForm').submit();" />
-                <input style="background: transparent; border: none; width: 250px" id="nameSearch" name="name" type="text" value="@Model.SearchTerm" placeholder="введите имя пользователя" />
+                <input class="green" style="background: transparent; border: none; width: 250px" id="nameSearch" name="name" type="text" value="@Model.SearchTerm" placeholder="введите имя пользователя" />
             </form>
         </div>
     </div>

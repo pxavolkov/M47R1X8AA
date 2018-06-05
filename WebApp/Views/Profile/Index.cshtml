@@ -44,12 +44,12 @@
     <div class="col-4"></div>
     <div class="col-2 col-xs-6">
         <div class="yellow" style="border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA;">
-            <img src="/Content/img/creditsr.png" />&nbsp;&nbsp;&nbsp;@Model.CurrentBalance
+            <img src="/Content/img/creditsr.png" />&nbsp;&nbsp;&nbsp;<span id="currentBalance">@Model.CurrentBalance</span>
         </div>
         <div class="green" style="border-bottom: 1px dashed #0098DA;">
-            @if (Model.MiningTimeLeft == "")
-    {
-        <form id="miningForm" method="post" action="@Url.Action("Mining", "Profile")">
+            
+    
+        <form id="miningForm" method="post" action="@Url.Action("Mining", "Profile")" style="@((Model.MiningTimeLeft != "") ? "display:none;" : "")">
             <div class="form-group">
                 <div class="col-md-offset-2 text-center green hoverlight" 
                      style="margin-top: 15px; border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; cursor: pointer;" 
@@ -59,10 +59,10 @@
             </div>
         </form>
          
-    }
-    else
+    
+    @if (Model.MiningTimeLeft != "")
     {
-        <img src="/Content/img/miningtimer.png" style="margin-right: 5px;" />@(Model.MiningTimeLeft)
+        <span id="miningIsOn"><img src="/Content/img/miningtimer.png" style="margin-right: 5px;" /><span id="miningTimer"></span></span>
     }
 
         </div>
@@ -86,3 +86,42 @@
         <div style="@Html.Raw(Model.NewsCount == 0 ? "display: none;" : "") background: #008DD5; width: 35px; height: 35px; border-radius: 50%; margin-left: -60px; margin-top: -10px;" class="fontsize150">&nbsp;&nbsp;&nbsp;&nbsp;@Model.NewsCount</div>
     </div>
 </div>
+
+@section Scripts{
+
+
+    <script>
+        var miningSecondsLeft = @(string.IsNullOrEmpty(Model.MiningTimeLeft) ? "0" : Model.MiningTimeLeft);
+        
+
+        $(document).ready(function () {
+            if (miningSecondsLeft != "0")
+                intervalId = setInterval(displayMiningTime, 1000);
+        });
+
+        function displayMiningTime() {
+            miningSecondsLeft -= 1;
+            var miningTime = getMiningTime();
+            if (!miningTime) {
+                clearInterval(intervalId);
+                $("#miningIsOn").hide();
+                $("#miningForm").show();
+                var balance = parseInt($("#currentBalance").text(), 10);
+                $("#currentBalance").text(balance + 100);
+            } else {
+                $('#miningTimer').text(miningTime);
+            }
+            
+        }
+
+        function getMiningTime() {
+            var seconds = parseInt(miningSecondsLeft, 10);
+            var minutes = Math.floor(seconds / 60);
+            seconds = seconds % 60;
+            if (minutes <=0  && seconds <= 0) {return ""};
+            if (minutes < 10) {minutes = "0" + minutes;}
+            if (seconds < 10) {seconds = "0" + seconds;}
+            return minutes + ":" + seconds;
+        }
+    </script>
+}
