@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using Model;
+using Model.Enum;
 using WebApp.Models;
 
 namespace WebApp.Controllers
@@ -46,6 +47,7 @@ namespace WebApp.Controllers
 
                 accountTo.Profile.Balance.Current += value;
                 account.Profile.Balance.Current -= value;
+                AddTransaction(accountTo.Id, value, TransactionType.Transfer);
                 MainContext.SaveChanges();
             }
 

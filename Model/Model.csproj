@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="BalanceInfo.cs" />
+    <Compile Include="Enum\TransactionType.cs" />
     <Compile Include="Gift.cs" />
     <Compile Include="MainContext.cs" />
     <Compile Include="Migrations\201802151511460_InitialCreate.cs" />
@@ -73,12 +74,17 @@
     <Compile Include="Migrations\201805302239560_Gift.Designer.cs">
       <DependentUpon>201805302239560_Gift.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806060823586_Transactions.cs" />
+    <Compile Include="Migrations\201806060823586_Transactions.Designer.cs">
+      <DependentUpon>201806060823586_Transactions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="News.cs" />
     <Compile Include="ProfileInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadNews.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805302239560_Gift.resx">
       <DependentUpon>201805302239560_Gift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806060823586_Transactions.resx">
+      <DependentUpon>201806060823586_Transactions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

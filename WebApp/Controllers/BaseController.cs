@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Model;
+using Model.Enum;
 
 namespace WebApp.Controllers
 {
@@ -72,6 +73,13 @@ namespace WebApp.Controllers
             }
 
             return account;
+        }
+
+        protected void AddTransaction(string targetUserId, int amount, TransactionType transactionType, string comment = null)
+        {
+            var transaction = new Transaction(GetCurrentUserAccount().Id, targetUserId, amount, (int)transactionType, comment);
+            MainContext.Transactions.Add(transaction);
+            MainContext.SaveChanges();
         }
 
         protected override void Dispose(bool disposing)

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using ImageResizer;
 using Microsoft.AspNet.Identity;
 using Model;
+using Model.Enum;
 using WebApp.Models;
 
 namespace WebApp.Controllers
@@ -146,6 +147,8 @@ namespace WebApp.Controllers
                 {
                     var setting = System.Configuration.ConfigurationManager.AppSettings["MiningTimeMinutes"];
                     account.Profile.Balance.MiningTime = DateTime.Now.AddMinutes(int.Parse(setting));
+                    var settingAmount = System.Configuration.ConfigurationManager.AppSettings["MiningCredits"];
+                    AddTransaction(account.Id, int.Parse(settingAmount), TransactionType.Mining);
                     MainContext.SaveChanges();
                 }
             }

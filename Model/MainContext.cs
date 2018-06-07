@@ -24,5 +24,6 @@ namespace Model
         public DbSet<News> News { get; set; }
         public DbSet<ReadNews> ReadNews { get; set; }
         public DbSet<Gift> Gifts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
     }
 }
