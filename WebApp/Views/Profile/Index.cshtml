@@ -4,24 +4,25 @@
 }
 
 
+
 <div class="row blue" style="padding-top: 10px;">
     <div class="col-4"></div>
     <div class="col-2 col-xs-6">
         <div style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; text-align: center; width: 174px; height: 174px;">
-            @*<a href="@Url.Action("UploadPhoto", "Profile")" >*@
+            <a href="@Url.Action("UploadPhoto", "Profile")">
                 @if (!string.IsNullOrEmpty(Model.AvatarPath))
                 {
-                    <img src="@Model.AvatarPath" style="border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;" />
+                    <img src="@Model.AvatarPath" style="border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;"/>
                 }
                 else
                 {
                     <div class="fontsize200">^</div>
                     <div class="fontsize200">^</div>
                     <div>
-                        no<br/>photo
+                        no<br />photo
                     </div>
                 }
-            @*</a>*@
+            </a>
         </div>
     </div>
     <div class="col-2 col-xs-6">

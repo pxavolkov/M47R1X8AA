@@ -5,40 +5,58 @@
 }
 
 <div class="row">
-    @using (Html.BeginForm("FileUpload", "Profile", FormMethod.Post,
-        new {enctype = "multipart/form-data", id = "uploadForm"}))
-    {
-        <label class="btn btn-primary" for="file">
-            <input id="file" name="file" type="file" style="display: none;" onchange="javascript: document.getElementById('uploadForm').submit();">
-            Загрузить картинку
-        </label>
-    }
-  
+    <div class="col-4"></div>
+    <div class="col-4 col-xs-12 green">
+        <div class="fontsize150">Внимание!</div>
+        <div>Администрация предупреждает, что фото, на котором не видно лица пользователя, будет удалено без предупреждения.</div>
+    </div>
+    <div class="col-4"></div>
 </div>
-<div class="row">
-    @if (!string.IsNullOrEmpty(Model?.Path))
-    {
-        <div align="center">
-            <img src="@Model.Path" style="float: left; margin-right: 10px; width: @(Model.DisplayWidth)px; height: @(Model.DisplayHeight)px;" id="thumbnail" alt="Create Thumbnail">
-            <div style="float:left; position:relative; overflow:hidden; width:170px; height:170px;">
-                <img src="@Model.Path" style="position: relative;" alt="Thumbnail Preview">
-            </div>
 
-            <br style="clear:both;">
-            
-            @using (Html.BeginForm("Crop", "Profile", FormMethod.Post,
-                    new { enctype = "multipart/form-data", id = "cropForm" }))
-            {
-                <input type="hidden" name="x1" value="" id="x1">
-                <input type="hidden" name="y1" value="" id="y1">
-                <input type="hidden" name="x2" value="" id="x2">
-                <input type="hidden" name="y2" value="" id="y2">
-                <input type="hidden" name="w" value="" id="w">
-                <input type="hidden" name="h" value="" id="h">
-                <input type="submit" class="btn btn-default" name="upload_thumbnail" value="Сохранить аватарку" id="saveThumb">
-            }
-        </div>
-    }
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 col-xs-12" style="margin-top: 10px;text-align: center">
+        @using (Html.BeginForm("FileUpload", "Profile", FormMethod.Post,
+            new { enctype = "multipart/form-data", id = "uploadForm" }))
+        {
+            <label class="btn btn-primary" for="file">
+                <input id="file" name="file" type="file" style="display: none;" onchange="javascript: document.getElementById('uploadForm').submit();">
+                Загрузить картинку
+            </label>
+        }
+    </div>
+    <div class="col-4"></div>
+</div>
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 col-xs-12 green" style="text-align: center">
+        @if (!string.IsNullOrEmpty(Model?.Path))
+        {
+            <div>Исходное фото</div>
+            <img src="@Model.Path" style="float: left; margin-right: 10px; width: @(Model.DisplayWidth)px; height: @(Model.DisplayHeight)px;" id="thumbnail" alt="Исходное фото">
+            <div>Аватарка</div>    
+            <div style="float: left; position: relative; overflow: hidden; width: 170px; height: 170px;">
+                    <img src="@Model.Path" style="position: relative;" alt="Аватарка" id="ava">
+                </div>
+
+                <br style="clear: both;">
+
+                using (Html.BeginForm("Crop", "Profile", FormMethod.Post,
+                    new { enctype = "multipart/form-data", id = "cropForm", style = "margin-top: 10px;" }))
+                {
+                    <input type="hidden" name="x1" value="" id="x1">
+                    <input type="hidden" name="y1" value="" id="y1">
+                    <input type="hidden" name="x2" value="" id="x2">
+                    <input type="hidden" name="y2" value="" id="y2">
+                    <input type="hidden" name="w" value="" id="w">
+                    <input type="hidden" name="h" value="" id="h">
+                    <input type="submit" class="btn btn-default" name="upload_thumbnail" value="Сохранить аватарку" id="saveThumb">
+                }
+           
+        }
+    </div>
+    <div class="col-4"></div>
 </div>
 
 @section Scripts{
@@ -51,7 +69,7 @@
             var scaleX = 170 / selection.width; 
             var scaleY = 170 / selection.height; 
 
-            $('#thumbnail + div > img').css({ 
+            $('#ava').css({ 
                 width: Math.round(scaleX * @Model.DisplayWidth) + 'px', 
                 height: Math.round(scaleY * @Model.DisplayHeight) + 'px',
                 marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px', 
