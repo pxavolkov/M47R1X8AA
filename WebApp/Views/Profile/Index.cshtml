@@ -6,8 +6,8 @@
 
 
 <div class="row blue" style="padding-top: 10px;">
-    <div class="col-4 hidden-sm-down"></div>
-    <div class="col-2 col-sm-6 col-6">
+    <div class="col-lg-4 hidden-md-down"></div>
+    <div class="col-lg-2 col-md-6 col-6">
         <div style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; text-align: center; width: 174px; height: 174px;">
             <a href="@Url.Action("UploadPhoto", "Profile")">
                 @if (!string.IsNullOrEmpty(Model.AvatarPath))
@@ -25,25 +25,25 @@
             </a>
         </div>
     </div>
-    <div class="col-2 col-sm-6 col-6">
+    <div class="col-lg-2 col-md-6 col-6">
         <div class="fontsize200">Age...@Model.Profile.Age</div>
         <div class="fontsize200">Sex...@(Model.Profile.IsMale ? "M" : "F")</div>
         @*<div><br /><br /></div>
         <div class="@(Model.Profile.IsCitizen ? "green" : "orange")">Registration: @(Model.Profile.IsCitizen ? "YES" : "!NO!")</div>*@
     </div>
-    <div class="col-4 hidden-sm-down"></div>
+    <div class="col-lg-4 hidden-md-down"></div>
 </div>
 <div class="row lightGreen fontsize200" style="text-decoration: underline">
-    <div class="col-4 hidden-sm-down"></div>
-    <div class="col-4 col-sm-12 col-12">
+    <div class="col-lg-4 hidden-md-down"></div>
+    <div class="col-lg-4 col-md-12 col-12">
         <div>@Model.FirstName</div>
         <div>@Model.LastName</div>
     </div>
-    <div class="col-4 hidden-sm-down"></div>
+    <div class="col-lg-4 hidden-md-down"></div>
 </div>
 <div class="row fontsize200">
-    <div class="col-4 hidden-sm-down"></div>
-    <div class="col-2 col-sm-6 col-6">
+    <div class="col-lg-4 hidden-md-down"></div>
+    <div class="col-lg-2 col-md-6 col-6">
         <div class="yellow" style="border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA;">
             <img src="/Content/img/creditsr.png" />&nbsp;&nbsp;&nbsp;<span id="currentBalance">@Model.CurrentBalance</span>
         </div>
@@ -68,21 +68,21 @@
 
         </div>
     </div>
-    <div class="col-2 col-sm-6 col-6" style="margin-left: -5px; border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; display:flex;align-items:center;justify-content:center;">
+    <div class="col-lg-2 col-md-6 col-6" style="margin-left: -5px; border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; display:flex;align-items:center;justify-content:center;">
         <a href="@Url.Action("Index", "Shop")"><img src="/Content/img/shopr.png" style="display: block; margin: 0 auto; padding-top: 5px;" /></a>
     </div>
-    <div class="col-4 hidden-sm-down"></div>
+    <div class="col-lg-4 hidden-md-down"></div>
 </div>
 <div class="row">
-    <div class="col-4 hidden-sm-down"></div>
-    <div class="col-4 col-sm-12 col-12"><a href="@Url.Action("Index", "User")"><img src="/Content/img/userlistr.png" style="display: block; margin: 0 auto; padding: 5px;" /></a></div>
-    <div class="col-4 hidden-sm-down"></div>
+    <div class="col-lg-4 hidden-md-down"></div>
+    <div class="col-lg-4 col-md-12 col-12"><a href="@Url.Action("Index", "User")"><img src="/Content/img/userlistr.png" style="display: block; margin: 0 auto; padding: 5px;" /></a></div>
+    <div class="col-lg-4 hidden-md-down"></div>
 </div>
 <div class="row almostWhite">
-    <div class="col-4 hidden-sm-down"></div>
-    <div class="col-4 col-sm-12 col-12 fontsize200" style="text-align: center; border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA; cursor: pointer;"
+    <div class="col-lg-4 hidden-md-down"></div>
+    <div class="col-lg-4 col-md-12 col-12 fontsize200" style="text-align: center; border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA; cursor: pointer;"
          onclick="location.href = '@Url.Action("Index", "News")';">Новости Опоры</div>
-    <div class="col-4 hidden-sm-down">
+    <div class="col-lg-4 hidden-md-down">
 
         <div style="@Html.Raw(Model.NewsCount == 0 ? "display: none;" : "") background: #008DD5; width: 35px; height: 35px; border-radius: 50%; margin-left: -60px; margin-top: -10px;" class="fontsize150">&nbsp;&nbsp;&nbsp;&nbsp;@Model.NewsCount</div>
     </div>

@@ -7,14 +7,14 @@
 @foreach (var m in Model)
 {
     <div class="row blue">
-        <div class="col-4 hidden-sm-down"></div>
-        <div class="col-3 col-sm-9 col-9" style="border-bottom: 1px dashed #0098DA;">
+        <div class="col-lg-4 hidden-md-down"></div>
+        <div class="col-lg-3 col-md-9 col-9" style="border-bottom: 1px dashed #0098DA;">
             <div class="fontsize150">@m.Title</div>
             <div>@m.Text</div>
         </div>
-        <div class="col-1 col-sm-3 col-3" style="border-bottom: 1px dashed #0098DA; margin-left: -10px;">
+        <div class="col-lg-1 col-md-3 col-3" style="border-bottom: 1px dashed #0098DA; margin-left: -10px;">
             <div>@m.CreateDate.ToString("dd.MM.yyyy")</div>
         </div>
-        <div class="col-4 hidden-sm-down"></div>
+        <div class="col-lg-4 hidden-md-down"></div>
     </div>
 }

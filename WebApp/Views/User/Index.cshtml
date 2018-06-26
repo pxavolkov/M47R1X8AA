@@ -4,16 +4,16 @@
 }
 
 <div class="row blue">
-    <div class="col-4 hidden-sm-down"></div>
-    <div class="col-4 col-sm-12 col-12">
+    <div class="col-lg-4 hidden-md-down"></div>
+    <div class="col-lg-4 col-md-12 col-12">
         <div class="green text-center">users online: @Model.Users.Count</div>
     </div>
-    <div class="col-4 hidden-sm-down"></div>
+    <div class="col-lg-4 hidden-md-down"></div>
 </div>
 
 <div class="row blue">
-    <div class="col-4 hidden-sm-down"></div>
-    <div class="col-4 col-sm-12 col-12">
+    <div class="col-lg-4 hidden-md-down"></div>
+    <div class="col-lg-4 col-md-12 col-12">
         <div class="text-center">
             <form id="searchForm" method="get" action="~/User/Search">
                 <img src="/Content/img/search.png" style="height: 15px;" onclick="javascript: document.getElementById('searchForm').submit();" />
@@ -21,11 +21,11 @@
             </form>
         </div>
     </div>
-    <div class="col-4 hidden-sm-down"></div>
+    <div class="col-lg-4 hidden-md-down"></div>
 </div>
 
 <div class="modal fade transferModal" tabindex="-1" role="dialog" aria-hidden="true" id="transferModal">
-    <div class="modal-dialog modal-sm" style="margin-right: 25px;">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content" style="background-color: #00212F; color: #fff;">
             <div class="modal-body">
                 <form>
@@ -48,8 +48,8 @@
 @foreach (var user in Model.Users)
 {
     <div class="row blue">
-        <div class="col-4 hidden-sm-down"></div>
-        <div class="col-1 col-sm-3 col-3" style="border-top: 1px dashed #0098DA; ">
+        <div class="col-lg-4 hidden-md-down"></div>
+        <div class="col-lg-1 col-md-3 col-3" style="border-top: 1px dashed #0098DA; ">
             <div style="border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; text-align: center;
                                                                                                                                                                                                                                                                            width: 87px; height: 87px; margin-top: 5px; margin-bottom: 5px;">
                 @if (!string.IsNullOrEmpty(user.AvatarPath))
@@ -63,23 +63,23 @@
                 }
             </div>
         </div>
-        <div class="col-2 col-sm-6 col-6" style="border-top: 1px dashed #0098DA; ">
+        <div class="col-lg-2 col-md-6 col-6" style="border-top: 1px dashed #0098DA; ">
             <div class="green">@user.FirstName</div>
             <div class="green">@user.LastName</div>
             <div><img src="/Content/img/mail.png" style="height: 42px; cursor: pointer;" title="Отправить сообщение" onclick="$('@Html.Raw("#ma" + user.UserId)').show();$('@Html.Raw("#ma" + user.UserId)').fadeOut(3000);" /></div>
         </div>
-        <div class="col-1 col-sm-3 col-3" style="border-top: 1px dashed #0098DA; position: relative; min-height: 87px; margin-left: -15px;">
+        <div class="col-lg-1 col-md-3 col-3" style="border-top: 1px dashed #0098DA; position: relative; min-height: 87px; margin-left: -15px;">
             <div style="position: absolute; bottom: 5px;">
                 <button class="btn" style="background-color: transparent" data-toggle="modal" data-target=".transferModal">
                     <img data-user="@user.UserId" title="Перевести кредиты" onclick="$('#userId').val(this.getAttribute('data-user'));$('#errorMessage').hide();$('#amount').val(100);" src="/Content/img/sendmoney.png" style="height: 42px; cursor: pointer;" />
                 </button>
             </div>
         </div>
-        <div class="col-4 hidden-sm-down"></div>
+        <div class="col-lg-4 hidden-md-down"></div>
     </div>
     <div class="row">
-        <div class="col-4 hidden-sm-down"></div>
-        <div class="col-4 col-sm-12 col-12">
+        <div class="col-lg-4 hidden-md-down"></div>
+        <div class="col-lg-4 col-md-12 col-12">
             <div id="@Html.Raw("sa" + user.UserId)" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -99,7 +99,7 @@
                 <span id="@Html.Raw("eatext" + user.UserId)">Ошибка при переводе кредитов. Обратитесь к администрации</span>
             </div>
         </div>
-        <div class="col-4 hidden-sm-down"></div>
+        <div class="col-lg-4 hidden-md-down"></div>
     </div>
 }
 
