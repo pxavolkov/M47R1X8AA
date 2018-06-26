@@ -3,6 +3,22 @@
     ViewBag.Title = "Профиль";
 }
 
+<div class="modal fade disabledModal" tabindex="-1" role="dialog" aria-hidden="true" id="disabledModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="background-color: #00212F; color: #fff;">
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <span class="col-form-label">Для использования функций Матрицы оплатите регистрационный взнос</span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="row blue" style="padding-top: 10px;">
@@ -50,11 +66,11 @@
         <div class="green" style="border-bottom: 1px dashed #0098DA;">
             
     
-        <form id="miningForm" method="post" action="@Url.Action("Mining", "Profile")" style="@((Model.MiningTimeLeft != "") ? "display:none;" : "")">
+        <form id="miningForm" method="post" action="" style="@((Model.MiningTimeLeft != "") ? "display:none;" : "")">
             <div class="form-group">
-                <div class="col-md-offset-2 text-center green hoverlight" 
-                     style="margin-top: 15px; border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; cursor: pointer;" 
-                     onclick="location.href = '@Url.Action("Mining", "Profile")';">
+                <div class="col-md-offset-2 text-center green hoverlight" data-toggle="@(Model.Profile.IsCitizen ? "" : "modal")" data-target=".disabledModal"
+                     style="margin-top: 15px; border: 2px solid #0098DA; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; cursor: pointer;"
+                     onclick="location.href = '@Model.MiningUrl';">
                     Mining
                 </div>
             </div>
@@ -80,8 +96,8 @@
 </div>
 <div class="row almostWhite">
     <div class="col-lg-4 hidden-md-down"></div>
-    <div class="col-lg-4 col-md-12 col-12 fontsize200" style="text-align: center; border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA; cursor: pointer;"
-         onclick="location.href = '@Url.Action("Index", "News")';">Новости Опоры</div>
+    <div class="col-lg-4 col-md-12 col-12 fontsize200" data-toggle="@(Model.Profile.IsCitizen ? "" : "modal")" data-target=".disabledModal" style="text-align: center; border-top: 1px dashed #0098DA; border-bottom: 1px dashed #0098DA; cursor: pointer;"
+         onclick="location.href = '@Model.NewsUrl';">Новости Опоры</div>
     <div class="col-lg-4 hidden-md-down">
 
         <div style="@Html.Raw(Model.NewsCount == 0 ? "display: none;" : "") background: #008DD5; width: 35px; height: 35px; border-radius: 50%; margin-left: -60px; margin-top: -10px;" class="fontsize150">&nbsp;&nbsp;&nbsp;&nbsp;@Model.NewsCount</div>

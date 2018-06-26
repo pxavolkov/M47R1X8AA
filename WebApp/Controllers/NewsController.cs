@@ -22,6 +22,11 @@ namespace WebApp.Controllers
                 account.Profile = MainContext.Profiles.Include(p => p.Balance).SingleOrDefault(r => r.ID == account.Profile.ID);
             }
 
+            if (!(account?.Profile?.IsCitizen ?? false))
+            {
+                return RedirectToAction("Index", "Profile");
+            }
+
             var allNews = MainContext.News.OrderByDescending(n => n.CreateDate).ToList();
             var readNews = MainContext.ReadNews.Where(r => r.UserId == account.Id).ToList();
             foreach (var n in allNews)

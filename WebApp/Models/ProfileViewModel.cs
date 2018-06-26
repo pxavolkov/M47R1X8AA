@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Web.Mvc;
 using Model;
 
 namespace WebApp.Models
@@ -43,6 +44,9 @@ namespace WebApp.Models
         }
 
         public int NewsCount { get; set; }
+
+        public string MiningUrl { get; set; }
+        public string NewsUrl { get; set; }
 
         public ProfileViewModel(ProfileInfo profile, int newsCount)
         {

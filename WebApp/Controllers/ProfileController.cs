@@ -30,6 +30,8 @@ namespace WebApp.Controllers
             var unreadNews = MainContext.News.Where(u => !readNews.Contains(u.ID));
             
             var model = new ProfileViewModel(account.Profile, unreadNews.Count());
+            model.MiningUrl = model.Profile.IsCitizen ? Url.Action("Mining", "Profile") : "#";
+            model.NewsUrl = model.Profile.IsCitizen ? Url.Action("Index", "News") : "#";
             return View(model);
         }
 
@@ -141,7 +143,7 @@ namespace WebApp.Controllers
         public ActionResult Mining()
         {
             var account = GetCurrentUserAccount();
-            if (account?.Profile?.Balance != null)
+            if (account?.Profile?.Balance != null && account.Profile.IsCitizen)
             {
                 if (!account.Profile.Balance.MiningTime.HasValue || account.Profile.Balance.MiningTime < DateTime.Now)
                 {
