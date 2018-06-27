@@ -99,8 +99,8 @@ namespace WebApp.Controllers
                     Info = model.Info,
                     Allergy = model.Allergy,
                     RegistrationDate = DateTime.Now,
-                    LockoutEnabled = true,
-                    LockoutEndDateUtc = new DateTime(2019, 1, 1), 
+                    //LockoutEnabled = true,
+                    //LockoutEndDateUtc = new DateTime(2019, 1, 1), 
                     
                     Profile = new ProfileInfo
                     {
@@ -114,7 +114,8 @@ namespace WebApp.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Approval", "Account");
+                    await SignInManager.SignInAsync(user, false, false);
+                    return RedirectToAction("Index", "Profile");
                 }
                 ModelState.AddModelError("", "Ошибка. Попробуйте зарегистрироваться еще раз или обратитесь к мастерам.");
             }
