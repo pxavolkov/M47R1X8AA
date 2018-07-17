@@ -1,0 +1,36 @@
+﻿@model WebApp.Models.NewsViewModel
+
+@{
+    ViewBag.Title = "Регистрации";
+}
+
+<h2 class="green">Новости</h2>
+
+@foreach (var n in Model.News)
+{
+    <hr/>
+    <form action="@Url.Action("EditNews", "Master", new {id = n.ID})" method="post">
+        <input type="text" required="" name="title" value="@n.Title"/><br/>
+        <textarea name="body" required="">@n.Text</textarea><br/>
+        <input type="date" required="" name="date" value="@n.CreateDate.ToString("yyyy-MM-dd")"/><br/>
+        @if (!string.IsNullOrEmpty(n.Error))
+        {
+            <span class="text-danger">@n.Error</span>
+        }
+        <input type="submit" value="Сохранить" class="btn btn-default"/>
+    </form>
+    <hr/>
+}
+
+<h3 class="green">Добавить новую новость</h3>
+<form action="@Url.Action("AddNews", "Master")" method="post">
+    <input type="text" required="" name="title" value="@Model.NewNews.Title" /><br />
+    <textarea required="" name="body">@Model.NewNews.Text</textarea><br />
+    <input type="date" required="" name="date" value="@Html.Raw(Model.NewNews.CreateDate == DateTime.MinValue ? "" : Model.NewNews.CreateDate.ToString("dd.MM.yyyy"))" /><br />
+    @if (!string.IsNullOrEmpty(Model.NewNews.Error))
+    {
+        <span class="text-danger">@Model.NewNews.Error</span>
+    }
+    <input type="submit" value="Добавить" class="btn btn-default" />
+</form>
+

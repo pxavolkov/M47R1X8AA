@@ -6,7 +6,7 @@
 
 <h2 class="green">Регистрации</h2>
 
-
+    <button onclick="location.href = '@Url.Action("News", "Master")'" class="btn btn-default" style="margin-bottom: 10px;">Новости</button>
         <table class="table table-bordered lightGreen">
             <thead>
             <tr>
@@ -17,19 +17,21 @@
                 <th>Аллергии</th>
                 <th>Персонаж</th>
                 <th>Квента</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             @foreach (var a in @Model)
             {
                 <tr>
-                <td>@a.PlayerName (@a.PlayerAge)</td>
-                <td><a href="mailto:@a.Email">@a.Email</a></td>
-                <td>@a.RegistrationDate.ToString("dd/MM/yyyy")</td>
-                <td>@(a.Info.Contains("vk.com") ? Html.Raw($"<a href=\"{a.Info}\">{a.Info}</a>") : Html.Raw(a.Info))</td>
-                <td>@(string.IsNullOrEmpty(a.Allergy) ? "Нет" : a.Allergy)</td>
-                <td>Имя: @a.Profile.FirstName @a.Profile.LastName (возраст: @a.Profile.Age). Пол: @(a.Profile.IsMale ? "М" : "Ж")</td>
-                <td>@(string.IsNullOrEmpty(a.Profile.QuentaPath) ? Html.Raw("Нет") : Html.Raw($"<a href='{Path.Combine("/Upload/Quenta", Path.GetFileName(a.Profile.QuentaPath))}'>Скачать</a>"))</td>
+                    <td>@a.PlayerName (@a.PlayerAge)</td>
+                    <td><a href="mailto:@a.Email">@a.Email</a></td>
+                    <td>@a.RegistrationDate.ToString("dd/MM/yyyy")</td>
+                    <td>@(a.Info.Contains("vk.com") ? Html.Raw($"<a href=\"{a.Info}\">{a.Info}</a>") : Html.Raw(a.Info))</td>
+                    <td>@(string.IsNullOrEmpty(a.Allergy) ? "Нет" : a.Allergy)</td>
+                    <td>Имя: @a.Profile.FirstName @a.Profile.LastName (возраст: @a.Profile.Age). Пол: @(a.Profile.IsMale ? "М" : "Ж")</td>
+                    <td>@(string.IsNullOrEmpty(a.Profile.QuentaPath) ? Html.Raw("Нет") : Html.Raw($"<a href='{Path.Combine("/Upload/Quenta", Path.GetFileName(a.Profile.QuentaPath))}'>Скачать</a>"))</td>
+                    <td><button onclick="location.href = '@Url.Action("Toggle","Master",new { id = a.Id })';" class="btn btn-@(a.Profile.IsCitizen ? Html.Raw("danger") : Html.Raw("success"))">@(a.Profile.IsCitizen ? Html.Raw("Выключить") : Html.Raw("Включить"))</button></td>
                 </tr>
             }
             </tbody>

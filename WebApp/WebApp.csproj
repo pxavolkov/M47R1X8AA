@@ -185,6 +185,8 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AvatarViewModel.cs" />
+    <Compile Include="Models\NewsViewModel.cs" />
+    <Compile Include="Models\NewsWithError.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
@@ -270,6 +272,7 @@
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Gift\WrongCode.cshtml" />
+    <Content Include="Views\Master\News.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
